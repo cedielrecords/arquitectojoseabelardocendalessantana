@@ -3,46 +3,79 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Arquitecto José Abelardo Cendales Santana</title>
-
-<link rel="stylesheet" href="style.css">
+<title>José Abelardo Cendales Santana — Arquitecto</title>
 
 <style>
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
+font-family: 'Segoe UI', sans-serif;
 }
 
 body{
-font-family: 'Helvetica Neue', Arial, sans-serif;
 background:#000;
-color:#fff;
+color:#e6f7ff;
 scroll-behavior:smooth;
 }
 
-/* NAVBAR */
+/* PORTADA */
+.hero{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+background:#000;
+animation:fadeIn 2s ease;
+}
+
+.hero h1{
+font-size:48px;
+letter-spacing:3px;
+color:white;
+}
+
+.hero h2{
+font-size:20px;
+color:#66d9ff;
+margin-top:10px;
+}
+
+.hero button{
+margin-top:40px;
+padding:15px 30px;
+background:#66d9ff;
+border:none;
+color:#000;
+font-weight:bold;
+cursor:pointer;
+transition:0.3s;
+}
+
+.hero button:hover{
+background:white;
+}
+
+/* NAV */
 nav{
 position:fixed;
 top:0;
 width:100%;
-background:rgba(0,0,0,0.95);
-padding:20px 60px;
-z-index:1000;
-border-bottom:1px solid rgba(0,207,255,0.2);
-}
-
-nav ul{
+background:#000;
+padding:15px;
 display:flex;
+justify-content:center;
 gap:40px;
-list-style:none;
+z-index:1000;
+border-bottom:1px solid #111;
 }
 
 nav a{
-color:#00cfff;
+color:#66d9ff;
 text-decoration:none;
-font-size:14px;
-letter-spacing:2px;
+font-weight:bold;
 transition:0.3s;
 }
 
@@ -52,99 +85,56 @@ color:white;
 
 /* SECCIONES */
 section{
-min-height:100vh;
-padding:140px 60px 80px 60px;
-display:flex;
-align-items:center;
-justify-content:center;
-flex-direction:column;
+padding:100px 10%;
 animation:fadeIn 1.5s ease;
 }
 
-/* PORTADA NEGRA */
-.hero{
-background:#000;
-text-align:center;
+h2{
+color:#66d9ff;
+margin-bottom:30px;
+letter-spacing:2px;
 }
 
-.hero h1{
-font-size:48px;
-letter-spacing:6px;
-margin-bottom:20px;
-}
-
-.hero h2{
-font-size:20px;
-color:#00cfff;
-font-weight:300;
-letter-spacing:3px;
-}
-
-/* ACERCA DE */
-.about{
-max-width:900px;
-line-height:1.8;
-text-align:justify;
-font-size:18px;
-}
-
-/* TITULOS */
-.section-title{
-font-size:36px;
-letter-spacing:4px;
-margin-bottom:40px;
-color:#00cfff;
+/* ACERCA */
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:50px;
 }
 
 /* GALERÍA */
 .gallery{
-position:relative;
-max-width:1100px;
-width:100%;
 text-align:center;
 }
 
 .gallery img{
-width:100%;
-height:650px;
-object-fit:contain;
-border-radius:10px;
+max-width:90%;
+max-height:70vh;
+border:3px solid #66d9ff;
 transition:opacity 0.5s ease;
-background:#000;
 }
 
 .caption{
 margin-top:20px;
 font-size:18px;
-color:#00cfff;
-max-width:900px;
-margin-left:auto;
-margin-right:auto;
+color:#b3ecff;
 }
 
-/* FLECHAS */
-.arrow{
-position:absolute;
-top:50%;
-transform:translateY(-50%);
-font-size:50px;
+.controls{
+margin-top:20px;
+}
+
+.controls button{
+padding:10px 20px;
+margin:10px;
+background:#66d9ff;
+border:none;
 cursor:pointer;
-color:white;
-padding:10px;
-user-select:none;
-transition:0.3s;
+font-weight:bold;
 }
 
-.arrow:hover{
-color:#00cfff;
-}
-
-.left{ left:-70px; }
-.right{ right:-70px; }
-
-/* ANIMACIÓN */
 @keyframes fadeIn{
-from{opacity:0; transform:translateY(30px);}
+from{opacity:0; transform:translateY(20px);}
 to{opacity:1; transform:translateY(0);}
 }
 </style>
@@ -152,67 +142,85 @@ to{opacity:1; transform:translateY(0);}
 
 <body>
 
-<!-- MENU -->
 <nav>
-<ul>
-<li><a href="#inicio">INICIO</a></li>
-<li><a href="#acerca">ACERCA DE</a></li>
-<li><a href="#trayectoria">TRAYECTORIA</a></li>
-<li><a href="#dosier">DOSIER FOTOGRÁFICO</a></li>
-</ul>
+<a href="#inicio">Inicio</a>
+<a href="#acerca">Acerca de</a>
+<a href="#trayectoria">Trayectoria</a>
+<a href="#dosier">Dosier Fotográfico</a>
 </nav>
 
-<!-- PORTADA NEGRA -->
-<section id="inicio" class="hero">
-<h1>JOSÉ ABELARDO CENDALES SANTANA</h1>
-<h2>ARQUITECTO</h2>
-<br>
-<h2>DOSIER FOTOGRÁFICO DE OBRA ARQUITECTÓNICA</h2>
+<!-- PORTADA -->
+<section class="hero" id="inicio">
+<h1>José Abelardo Cendales Santana</h1>
+<h2>Arquitecto — Dossier Fotográfico</h2>
+<button onclick="document.getElementById('acerca').scrollIntoView()">Entrar al Dossier</button>
 </section>
 
-<!-- ACERCA DE -->
+<!-- ACERCA -->
 <section id="acerca">
-<h2 class="section-title">ACERCA DE</h2>
-<div class="about">
-Arquitecto especialista en Administración y Gerencia de Sistemas de Calidad, con amplia trayectoria en diseño, dirección e intervención de obras civiles y arquitectónicas en Colombia. 
-Consultor, director de obra y docente en dirección de proyectos de grado y gestión de proyectos urbano-arquitectónicos.
-Experiencia en edificaciones públicas, privadas, reforzamientos estructurales, vivienda, infraestructura y obras institucionales.
+<h2>ACERCA DE</h2>
+<div class="grid">
+<div>
+<h3>Datos Personales</h3>
+<p>Cédula: 19.436.773 de Bogotá</p>
+<p>Fecha de Nacimiento: Marzo 17 de 1961</p>
+<p>Dirección: Carrera 69 80 - 70 Bogotá</p>
+<p>Tel: 310 7742402</p>
+<p>Email: joseacendales@gmail.com</p>
+</div>
+
+<div>
+<h3>Perfil Profesional</h3>
+<p>
+Consultor y Director de obra como contratista de obras civiles de infraestructura y edificaciones públicas y privadas.
+Docente en Dirección de proyectos de grado y gestión de proyectos urbano arquitectónicos.
+Universidad Piloto de Colombia.
+</p>
+</div>
 </div>
 </section>
 
-<!-- TRAYECTORIA / HOJA DE VIDA -->
+<!-- TRAYECTORIA -->
 <section id="trayectoria">
-<h2 class="section-title">TRAYECTORIA PROFESIONAL</h2>
-<div class="about">
-<strong>Arquitecto:</strong> Universidad Gran Colombia, 1987<br><br>
+<h2>TRAYECTORIA Y EXPERIENCIA LABORAL</h2>
 
-<strong>Especialización:</strong> Administración y Gerencia de Sistemas de Calidad  
-Universidad Santo Tomás - ICONTEC (2002 - 2004)<br><br>
+<p><strong>Docente, Universidad Piloto de Colombia</strong><br>
+Julio 2007 a Julio 2024</p>
 
-Docente en Dirección de Proyectos – Universidad Piloto de Colombia (2007 - 2024)<br><br>
+<br>
 
-Consultor y Director de obra en proyectos de infraestructura y edificaciones públicas y privadas.<br><br>
+<p><strong>Alcaldía Municipio Ubaté</strong><br>
+Director Construcción Plaza de Mercado<br>
+Área: 24.064 m2 – Año 2000</p>
 
-Director Construcción Plaza de Mercado – Municipio de Ubaté, Cundinamarca (Año 2000)<br><br>
+<br>
 
-Arquitecto diseñador y director técnico en múltiples proyectos institucionales, vivienda y reforzamiento estructural.
-</div>
+<p><strong>Arquitecto Diseñador</strong><br>
+Ing. William Pinzón, Consultor<br>
+1998 – 1999</p>
+
+<br>
+
+<p><strong>Secretaría de Obras Públicas</strong><br>
+Gobernación de Cundinamarca<br>
+Diseñador e interventor de equipamientos, colegios,
+casas de cultura, plazas de mercado y obras públicas.</p>
+
 </section>
 
 <!-- DOSIER FOTOGRÁFICO -->
-<section id="dosier">
-<h2 class="section-title">DOSIER FOTOGRÁFICO</h2>
+<section id="dosier" class="gallery">
+<h2>DOSIER FOTOGRÁFICO DE OBRA</h2>
 
-<div class="gallery">
-<div class="arrow left" onclick="prevImage()">❮</div>
-
-<img id="galleryImage" src="img/1.jpeg">
-
-<div class="arrow right" onclick="nextImage()">❯</div>
+<img id="galleryImage" src="img/1.jpeg" alt="obra">
 
 <div class="caption" id="caption">
-Registro fotográfico de obra arquitectónica
+Diseño y Construcción Ampliación planta física, Asociación de Ganaderos de Cucunubá, GANALAC. Área 126 m2 Marzo 2022.
 </div>
+
+<div class="controls">
+<button onclick="prevImage()">← Anterior</button>
+<button onclick="nextImage()">Siguiente →</button>
 </div>
 </section>
 
@@ -255,35 +263,10 @@ const images = [
 "img/28.png"
 ];
 
-const captions = {
-1:"Diseño y Construcción Ampliación planta física – GANALAC, Cucunubá. Área 126 m², 2022",
-2:"Construcción cerramiento colegio departamental Santa María Ubaté, Cundinamarca",
-7:"Ampliación edificio occidental Colegio Cardenal Sancha, Bogotá 1997 – Buitrago & Cendales",
-9:"Diseño y dirección de obra Plaza de Mercado Municipio de Ubaté, Año 2000",
-13:"Reforzamiento estructural del Colegio Cardenal Sancha en Bogotá",
-16:"Reforzamiento estructural del Colegio Cardenal Sancha en Bogotá",
-17:"Reforzamiento estructural del Colegio Cardenal Sancha en Bogotá",
-22:"Diseño vivienda Fusagasugá – Propiedad Jhanett Palencia, 2015",
-24:"Diseño de vivienda La Vega, Cundinamarca – Propietaria Marcela Silva, 2022",
-27:"Pavimentación Vereda Guatancuy, Municipio Ubaté, 2003",
-28:"Pavimentación Vereda Guatancuy, Municipio Ubaté, 2004"
-};
-
 let index = 0;
-const img = document.getElementById("galleryImage");
-const caption = document.getElementById("caption");
 
 function showImage(){
-img.style.opacity = 0;
-
-setTimeout(()=>{
-img.src = images[index];
-
-let num = images[index].match(/\d+/)[0];
-caption.textContent = captions[num] || "Registro fotográfico de obra arquitectónica";
-
-img.style.opacity = 1;
-},300);
+document.getElementById("galleryImage").src = images[index];
 }
 
 function nextImage(){
