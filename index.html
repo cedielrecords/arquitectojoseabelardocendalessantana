@@ -3,293 +3,82 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>José Abelardo Cendales Santana — Arquitecto</title>
+<title>Arquitecto José Abelardo Cendales Santana</title>
 
-<style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family: 'Segoe UI', sans-serif;
-}
-
-body{
-background:#000;
-color:#e6f7ff;
-scroll-behavior:smooth;
-}
-
-/* PORTADA */
-.hero{
-height:100vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
-background:#000;
-animation:fadeIn 2s ease;
-}
-
-.hero h1{
-font-size:48px;
-letter-spacing:3px;
-color:white;
-}
-
-.hero h2{
-font-size:20px;
-color:#66d9ff;
-margin-top:10px;
-}
-
-.hero button{
-margin-top:40px;
-padding:15px 30px;
-background:#66d9ff;
-border:none;
-color:#000;
-font-weight:bold;
-cursor:pointer;
-transition:0.3s;
-}
-
-.hero button:hover{
-background:white;
-}
-
-/* NAV */
-nav{
-position:fixed;
-top:0;
-width:100%;
-background:#000;
-padding:15px;
-display:flex;
-justify-content:center;
-gap:40px;
-z-index:1000;
-border-bottom:1px solid #111;
-}
-
-nav a{
-color:#66d9ff;
-text-decoration:none;
-font-weight:bold;
-transition:0.3s;
-}
-
-nav a:hover{
-color:white;
-}
-
-/* SECCIONES */
-section{
-padding:100px 10%;
-animation:fadeIn 1.5s ease;
-}
-
-h2{
-color:#66d9ff;
-margin-bottom:30px;
-letter-spacing:2px;
-}
-
-/* ACERCA */
-.grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:50px;
-}
-
-/* GALERÍA */
-.gallery{
-text-align:center;
-}
-
-.gallery img{
-max-width:90%;
-max-height:70vh;
-border:3px solid #66d9ff;
-transition:opacity 0.5s ease;
-}
-
-.caption{
-margin-top:20px;
-font-size:18px;
-color:#b3ecff;
-}
-
-.controls{
-margin-top:20px;
-}
-
-.controls button{
-padding:10px 20px;
-margin:10px;
-background:#66d9ff;
-border:none;
-cursor:pointer;
-font-weight:bold;
-}
-
-@keyframes fadeIn{
-from{opacity:0; transform:translateY(20px);}
-to{opacity:1; transform:translateY(0);}
-}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<nav>
-<a href="#inicio">Inicio</a>
-<a href="#acerca">Acerca de</a>
-<a href="#trayectoria">Trayectoria</a>
-<a href="#dosier">Dosier Fotográfico</a>
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="logo">JACS</div>
+    <ul>
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#acerca">Acerca de</a></li>
+        <li><a href="#trayectoria">Trayectoria</a></li>
+        <li><a href="#dossier">Dosier Fotográfico</a></li>
+    </ul>
 </nav>
 
-<!-- PORTADA -->
-<section class="hero" id="inicio">
-<h1>José Abelardo Cendales Santana</h1>
-<h2>Arquitecto — Dossier Fotográfico</h2>
-<button onclick="document.getElementById('acerca').scrollIntoView()">Entrar al Dossier</button>
+<!-- PORTADA NEGRA (SIN FOTO) -->
+<section id="inicio" class="hero">
+    <h1>JOSÉ ABELARDO<br>CENDALES SANTANA</h1>
+    <h2>ARQUITECTO</h2>
+    <p>Dosier Fotográfico · Trayectoria Profesional · Obras Civiles y Arquitectónicas</p>
 </section>
 
-<!-- ACERCA -->
-<section id="acerca">
-<h2>ACERCA DE</h2>
-<div class="grid">
-<div>
-<h3>Datos Personales</h3>
-<p>Cédula: 19.436.773 de Bogotá</p>
-<p>Fecha de Nacimiento: Marzo 17 de 1961</p>
-<p>Dirección: Carrera 69 80 - 70 Bogotá</p>
-<p>Tel: 310 7742402</p>
-<p>Email: joseacendales@gmail.com</p>
-</div>
-
-<div>
-<h3>Perfil Profesional</h3>
-<p>
-Consultor y Director de obra como contratista de obras civiles de infraestructura y edificaciones públicas y privadas.
-Docente en Dirección de proyectos de grado y gestión de proyectos urbano arquitectónicos.
-Universidad Piloto de Colombia.
-</p>
-</div>
-</div>
+<!-- ACERCA DE -->
+<section id="acerca" class="section">
+    <h2 class="titulo-azul">ACERCA DE</h2>
+    <p class="texto">
+        Arquitecto especialista en Administración y Gerencia de Sistemas de Calidad.
+        Consultor y Director de obra en proyectos de infraestructura y edificaciones públicas y privadas.
+        Docente en Dirección de Proyectos y Gestión de proyectos urbano arquitectónicos.
+    </p>
 </section>
 
 <!-- TRAYECTORIA -->
-<section id="trayectoria">
-<h2>TRAYECTORIA Y EXPERIENCIA LABORAL</h2>
+<section id="trayectoria" class="section">
+    <h2 class="titulo-azul">TRAYECTORIA PROFESIONAL</h2>
 
-<p><strong>Docente, Universidad Piloto de Colombia</strong><br>
-Julio 2007 a Julio 2024</p>
+    <div class="grid">
+        <div>
+            <h3>ESTUDIOS SUPERIORES</h3>
+            <p>Arquitecto – Universidad Gran Colombia, 1987</p>
+            <p>Especialización en Administración y Gerencia de Sistemas de Calidad</p>
+            <p>Universidad Santo Tomás – ICONTEC (2002–2004)</p>
+        </div>
 
-<br>
-
-<p><strong>Alcaldía Municipio Ubaté</strong><br>
-Director Construcción Plaza de Mercado<br>
-Área: 24.064 m2 – Año 2000</p>
-
-<br>
-
-<p><strong>Arquitecto Diseñador</strong><br>
-Ing. William Pinzón, Consultor<br>
-1998 – 1999</p>
-
-<br>
-
-<p><strong>Secretaría de Obras Públicas</strong><br>
-Gobernación de Cundinamarca<br>
-Diseñador e interventor de equipamientos, colegios,
-casas de cultura, plazas de mercado y obras públicas.</p>
-
+        <div>
+            <h3>EXPERIENCIA LABORAL</h3>
+            <p><strong>Docente</strong> – Universidad Piloto de Colombia (2007 – 2024)</p>
+            <p>Director Construcción Plaza de Mercado – Ubaté (2000)</p>
+            <p>Arquitecto Diseñador – Gobernación de Cundinamarca</p>
+        </div>
+    </div>
 </section>
 
-<!-- DOSIER FOTOGRÁFICO -->
-<section id="dosier" class="gallery">
-<h2>DOSIER FOTOGRÁFICO DE OBRA</h2>
+<!-- DOSSIER FOTOGRÁFICO FULLSCREEN -->
+<section id="dossier" class="dossier">
+    <h2 class="titulo-azul">DOSIER FOTOGRÁFICO DE OBRA</h2>
 
-<img id="galleryImage" src="img/1.jpeg" alt="obra">
+    <div class="visor">
+        <button class="flecha izquierda" onclick="anterior()">←</button>
 
-<div class="caption" id="caption">
-Diseño y Construcción Ampliación planta física, Asociación de Ganaderos de Cucunubá, GANALAC. Área 126 m2 Marzo 2022.
-</div>
+        <img id="fotoGrande" src="img/1.jpeg" alt="obra arquitectónica">
 
-<div class="controls">
-<button onclick="prevImage()">← Anterior</button>
-<button onclick="nextImage()">Siguiente →</button>
-</div>
+        <button class="flecha derecha" onclick="siguiente()">→</button>
+    </div>
+
+    <div class="caption">
+        <h3 id="tituloFoto">Diseño y Construcción Ampliación planta física – GANALAC</h3>
+        <p id="descripcionFoto">
+            Asociación de Ganaderos de Cucunubá · Área 126 m² · Marzo 2022
+        </p>
+    </div>
 </section>
 
-<script>
-const images = [
-"./img/1.jpeg",
-"./img/2.png",
-"./img/3.png",
-"./img/4.png",
-"./img/6.png",
-"./img/7.png",
-"./img/8.png",
-"./img/9.png",
-"./img/10.png",
-"./img/11.png",
-"./img/12.png",
-"./img/13.1.png",
-"./img/13.2.png",
-"./img/14.1.png",
-"./img/14.2.png",
-"./img/14.3.png",
-"./img/14.4.png",
-"./img/14.5.png",
-"./img/14.6.png",
-"./img/14.7.png",
-"./img/15.2.png",
-"./img/16.png",
-"./img/16.1.png",
-"./img/16.2.png",
-"./img/16.3.png",
-"./img/17.png",
-"./img/17.1.png",
-"./img/18.png",
-"./img/22.jpeg",
-"./img/23.jpeg",
-"./img/24.png",
-"./img/25.png",
-"./img/26.png",
-"./img/27.png",
-"./img/28.png"
-];
-
-let index = 0;
-
-function showImage(){
-const img = document.getElementById("galleryImage");
-img.style.opacity = 0;
-
-setTimeout(() => {
-img.src = images[index];
-img.style.opacity = 1;
-}, 300);
-}
-
-function nextImage(){
-index = (index + 1) % images.length;
-showImage();
-}
-
-function prevImage(){
-index = (index - 1 + images.length) % images.length;
-showImage();
-}
-
-// CARGA INICIAL GARANTIZADA
-window.onload = function(){
-showImage();
-};
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
