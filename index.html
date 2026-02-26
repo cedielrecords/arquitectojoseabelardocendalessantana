@@ -5,18 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Arquitecto José Abelardo Cendales Santana</title>
 
+<link rel="stylesheet" href="style.css">
+
 <style>
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family: "Helvetica Neue", Arial, sans-serif;
 }
 
 body{
+font-family: 'Helvetica Neue', Arial, sans-serif;
 background:#000;
-color:white;
-overflow:hidden;
+color:#fff;
+scroll-behavior:smooth;
 }
 
 /* NAVBAR */
@@ -24,122 +26,100 @@ nav{
 position:fixed;
 top:0;
 width:100%;
-display:flex;
-justify-content:center;
-gap:40px;
-padding:20px;
-background:rgba(0,0,0,0.6);
-backdrop-filter:blur(10px);
+background:rgba(0,0,0,0.95);
+padding:20px 60px;
 z-index:1000;
+border-bottom:1px solid rgba(0,207,255,0.2);
 }
 
-nav button{
-background:none;
-border:none;
-color:white;
+nav ul{
+display:flex;
+gap:40px;
+list-style:none;
+}
+
+nav a{
+color:#00cfff;
+text-decoration:none;
 font-size:14px;
 letter-spacing:2px;
-cursor:pointer;
-opacity:0.7;
 transition:0.3s;
 }
 
-nav button:hover{
-opacity:1;
-color:#4cc9ff;
+nav a:hover{
+color:white;
 }
 
 /* SECCIONES */
-.section{
-display:none;
-width:100vw;
-height:100vh;
-padding:120px 10vw;
-overflow-y:auto;
-}
-
-.active{
-display:block;
-}
-
-/* PORTADA */
-.hero{
+section{
+min-height:100vh;
+padding:140px 60px 80px 60px;
 display:flex;
-flex-direction:column;
-justify-content:center;
 align-items:center;
+justify-content:center;
+flex-direction:column;
+animation:fadeIn 1.5s ease;
+}
+
+/* PORTADA NEGRA */
+.hero{
+background:#000;
 text-align:center;
-height:100vh;
 }
 
 .hero h1{
 font-size:48px;
-font-weight:200;
-letter-spacing:3px;
+letter-spacing:6px;
 margin-bottom:20px;
 }
 
 .hero h2{
-font-size:22px;
-font-weight:200;
-opacity:0.8;
+font-size:20px;
+color:#00cfff;
+font-weight:300;
+letter-spacing:3px;
 }
 
-.subtitle{
-color:#4cc9ff;
-margin-top:15px;
+/* ACERCA DE */
+.about{
+max-width:900px;
+line-height:1.8;
+text-align:justify;
 font-size:18px;
 }
 
-/* DOSSIER GALERÍA */
+/* TITULOS */
+.section-title{
+font-size:36px;
+letter-spacing:4px;
+margin-bottom:40px;
+color:#00cfff;
+}
+
+/* GALERÍA */
 .gallery{
 position:relative;
+max-width:1100px;
 width:100%;
-height:80vh;
-overflow:hidden;
+text-align:center;
 }
 
-.slider{
-display:flex;
-height:100%;
-transition:transform 0.6s ease;
-}
-
-.slide{
-min-width:100%;
-position:relative;
-}
-
-.slide img{
+.gallery img{
 width:100%;
-height:100%;
-object-fit:cover;
+height:650px;
+object-fit:contain;
+border-radius:10px;
+transition:opacity 0.5s ease;
+background:#000;
 }
 
-/* TEXTO SOBRE FOTO */
-.overlay{
-position:absolute;
-bottom:0;
-width:100%;
-padding:40px;
-background:linear-gradient(to top, rgba(0,0,0,0.9), transparent);
-}
-
-.title{
-font-size:30px;
-font-weight:300;
-}
-
-.desc{
-font-size:16px;
-font-style:italic;
-opacity:0.8;
-margin-top:5px;
-}
-
-.meta{
-color:#4cc9ff;
-margin-top:8px;
+.caption{
+margin-top:20px;
+font-size:18px;
+color:#00cfff;
+max-width:900px;
+margin-left:auto;
+margin-right:auto;
 }
 
 /* FLECHAS */
@@ -147,124 +127,174 @@ margin-top:8px;
 position:absolute;
 top:50%;
 transform:translateY(-50%);
-font-size:40px;
+font-size:50px;
 cursor:pointer;
-background:rgba(0,0,0,0.4);
-padding:10px 20px;
+color:white;
+padding:10px;
 user-select:none;
+transition:0.3s;
 }
 
-.left{left:10px;}
-.right{right:10px;}
+.arrow:hover{
+color:#00cfff;
+}
+
+.left{ left:-70px; }
+.right{ right:-70px; }
+
+/* ANIMACIÓN */
+@keyframes fadeIn{
+from{opacity:0; transform:translateY(30px);}
+to{opacity:1; transform:translateY(0);}
+}
 </style>
 </head>
 
 <body>
 
+<!-- MENU -->
 <nav>
-<button onclick="showSection('home')">INICIO</button>
-<button onclick="showSection('about')">ACERCA DE</button>
-<button onclick="showSection('trayectoria')">TRAYECTORIA</button>
-<button onclick="showSection('dossier')">DOSSIER FOTOGRÁFICO</button>
+<ul>
+<li><a href="#inicio">INICIO</a></li>
+<li><a href="#acerca">ACERCA DE</a></li>
+<li><a href="#trayectoria">TRAYECTORIA</a></li>
+<li><a href="#dosier">DOSIER FOTOGRÁFICO</a></li>
+</ul>
 </nav>
 
-<!-- PORTADA -->
-<section id="home" class="section active">
-<div class="hero">
-<h1>ARQ. JOSÉ ABELARDO<br>CENDALES SANTANA</h1>
-<h2>Consultor · Director de Obra · Arquitecto</h2>
-<div class="subtitle">Dossier Fotográfico de Obras Arquitectónicas</div>
-</div>
+<!-- PORTADA NEGRA -->
+<section id="inicio" class="hero">
+<h1>JOSÉ ABELARDO CENDALES SANTANA</h1>
+<h2>ARQUITECTO</h2>
+<br>
+<h2>DOSIER FOTOGRÁFICO DE OBRA ARQUITECTÓNICA</h2>
 </section>
 
 <!-- ACERCA DE -->
-<section id="about" class="section">
-<h1>Acerca del Arquitecto</h1>
-<br><br>
-<p>
-Arquitecto con amplia trayectoria en diseño, dirección y ejecución de obras civiles,
-edificaciones públicas y privadas en Cundinamarca y Colombia.  
-Consultor y Director de obra con experiencia en proyectos institucionales,
-educativos, urbanísticos y de infraestructura.
-</p>
+<section id="acerca">
+<h2 class="section-title">ACERCA DE</h2>
+<div class="about">
+Arquitecto especialista en Administración y Gerencia de Sistemas de Calidad, con amplia trayectoria en diseño, dirección e intervención de obras civiles y arquitectónicas en Colombia. 
+Consultor, director de obra y docente en dirección de proyectos de grado y gestión de proyectos urbano-arquitectónicos.
+Experiencia en edificaciones públicas, privadas, reforzamientos estructurales, vivienda, infraestructura y obras institucionales.
+</div>
 </section>
 
-<!-- TRAYECTORIA -->
-<section id="trayectoria" class="section">
-<h1>Trayectoria Profesional</h1>
-<br><br>
-<p>
-Arquitecto – Universidad Gran Colombia  
-Especialización en Administración y Gerencia de Sistemas de Calidad – ICONTEC  
-Docente en Dirección de Proyectos Arquitectónicos – Universidad Piloto de Colombia  
-Director de Construcción Plaza de Mercado de Ubaté – 24.000 m²  
-Más de 30 años de experiencia en obras civiles y edificaciones.
-</p>
+<!-- TRAYECTORIA / HOJA DE VIDA -->
+<section id="trayectoria">
+<h2 class="section-title">TRAYECTORIA PROFESIONAL</h2>
+<div class="about">
+<strong>Arquitecto:</strong> Universidad Gran Colombia, 1987<br><br>
+
+<strong>Especialización:</strong> Administración y Gerencia de Sistemas de Calidad  
+Universidad Santo Tomás - ICONTEC (2002 - 2004)<br><br>
+
+Docente en Dirección de Proyectos – Universidad Piloto de Colombia (2007 - 2024)<br><br>
+
+Consultor y Director de obra en proyectos de infraestructura y edificaciones públicas y privadas.<br><br>
+
+Director Construcción Plaza de Mercado – Municipio de Ubaté, Cundinamarca (Año 2000)<br><br>
+
+Arquitecto diseñador y director técnico en múltiples proyectos institucionales, vivienda y reforzamiento estructural.
+</div>
 </section>
 
-<!-- DOSSIER -->
-<section id="dossier" class="section">
+<!-- DOSIER FOTOGRÁFICO -->
+<section id="dosier">
+<h2 class="section-title">DOSIER FOTOGRÁFICO</h2>
+
 <div class="gallery">
-<div class="arrow left" onclick="prevSlide()">‹</div>
-<div class="arrow right" onclick="nextSlide()">›</div>
+<div class="arrow left" onclick="prevImage()">❮</div>
 
-<div class="slider" id="slider">
+<img id="galleryImage" src="img/1.jpeg">
 
-<div class="slide">
-<img src="img/1.jpeg">
-<div class="overlay">
-<div class="title">Ampliación Planta Física – GANALAC</div>
-<div class="desc">Cucunubá · Diseño y Construcción</div>
-<div class="meta">Área 126 m² · 2022</div>
-</div>
-</div>
+<div class="arrow right" onclick="nextImage()">❯</div>
 
-<div class="slide">
-<img src="img/7.png">
-<div class="overlay">
-<div class="title">Colegio Cardenal Sancha</div>
-<div class="desc">Ampliación Edificio Occidental · Bogotá</div>
-<div class="meta">1600 m² · 1997</div>
-</div>
-</div>
-
-<div class="slide">
-<img src="img/27.png">
-<div class="overlay">
-<div class="title">Pavimentación Vereda Guatancuy</div>
-<div class="desc">Municipio de Ubaté</div>
-<div class="meta">Año 2003</div>
-</div>
-</div>
-
+<div class="caption" id="caption">
+Registro fotográfico de obra arquitectónica
 </div>
 </div>
 </section>
 
 <script>
-function showSection(id){
-document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
-document.getElementById(id).classList.add('active');
+const images = [
+"img/1.jpeg",
+"img/2.png",
+"img/3.png",
+"img/4.png",
+"img/6.png",
+"img/7.png",
+"img/8.png",
+"img/9.png",
+"img/10.png",
+"img/11.png",
+"img/12.png",
+"img/13.1.png",
+"img/13.2.png",
+"img/14.1.png",
+"img/14.2.png",
+"img/14.3.png",
+"img/14.4.png",
+"img/14.5.png",
+"img/14.6.png",
+"img/14.7.png",
+"img/15.2.png",
+"img/16.png",
+"img/16.1.png",
+"img/16.2.png",
+"img/16.3.png",
+"img/17.png",
+"img/17.1.png",
+"img/18.png",
+"img/22.jpeg",
+"img/23.jpeg",
+"img/24.png",
+"img/25.png",
+"img/26.png",
+"img/27.png",
+"img/28.png"
+];
+
+const captions = {
+1:"Diseño y Construcción Ampliación planta física – GANALAC, Cucunubá. Área 126 m², 2022",
+2:"Construcción cerramiento colegio departamental Santa María Ubaté, Cundinamarca",
+7:"Ampliación edificio occidental Colegio Cardenal Sancha, Bogotá 1997 – Buitrago & Cendales",
+9:"Diseño y dirección de obra Plaza de Mercado Municipio de Ubaté, Año 2000",
+13:"Reforzamiento estructural del Colegio Cardenal Sancha en Bogotá",
+16:"Reforzamiento estructural del Colegio Cardenal Sancha en Bogotá",
+17:"Reforzamiento estructural del Colegio Cardenal Sancha en Bogotá",
+22:"Diseño vivienda Fusagasugá – Propiedad Jhanett Palencia, 2015",
+24:"Diseño de vivienda La Vega, Cundinamarca – Propietaria Marcela Silva, 2022",
+27:"Pavimentación Vereda Guatancuy, Municipio Ubaté, 2003",
+28:"Pavimentación Vereda Guatancuy, Municipio Ubaté, 2004"
+};
+
+let index = 0;
+const img = document.getElementById("galleryImage");
+const caption = document.getElementById("caption");
+
+function showImage(){
+img.style.opacity = 0;
+
+setTimeout(()=>{
+img.src = images[index];
+
+let num = images[index].match(/\d+/)[0];
+caption.textContent = captions[num] || "Registro fotográfico de obra arquitectónica";
+
+img.style.opacity = 1;
+},300);
 }
 
-let index=0;
-const slider=document.getElementById("slider");
-const slides=document.querySelectorAll(".slide");
-
-function nextSlide(){
-index=(index+1)%slides.length;
-slider.style.transform=`translateX(-${index*100}%)`;
+function nextImage(){
+index = (index + 1) % images.length;
+showImage();
 }
 
-function prevSlide(){
-index=(index-1+slides.length)%slides.length;
-slider.style.transform=`translateX(-${index*100}%)`;
+function prevImage(){
+index = (index - 1 + images.length) % images.length;
+showImage();
 }
-
-document.addEventListener("keydown",(e)=>{
-if(e.key==="ArrowRight") nextSlide();
-if(e.key==="ArrowLeft") prevSlide();
-});
 </script>
 
 </body>
