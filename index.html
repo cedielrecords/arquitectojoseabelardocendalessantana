@@ -14,29 +14,99 @@ font-family: "Helvetica Neue", Arial, sans-serif;
 }
 
 body{
-background:#050505;
+background:#000;
 color:white;
 overflow:hidden;
 }
 
-/* CONTENEDOR GALERÍA */
-.gallery{
-position:relative;
+/* NAVBAR */
+nav{
+position:fixed;
+top:0;
+width:100%;
+display:flex;
+justify-content:center;
+gap:40px;
+padding:20px;
+background:rgba(0,0,0,0.6);
+backdrop-filter:blur(10px);
+z-index:1000;
+}
+
+nav button{
+background:none;
+border:none;
+color:white;
+font-size:14px;
+letter-spacing:2px;
+cursor:pointer;
+opacity:0.7;
+transition:0.3s;
+}
+
+nav button:hover{
+opacity:1;
+color:#4cc9ff;
+}
+
+/* SECCIONES */
+.section{
+display:none;
 width:100vw;
 height:100vh;
+padding:120px 10vw;
+overflow-y:auto;
+}
+
+.active{
+display:block;
+}
+
+/* PORTADA */
+.hero{
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+height:100vh;
+}
+
+.hero h1{
+font-size:48px;
+font-weight:200;
+letter-spacing:3px;
+margin-bottom:20px;
+}
+
+.hero h2{
+font-size:22px;
+font-weight:200;
+opacity:0.8;
+}
+
+.subtitle{
+color:#4cc9ff;
+margin-top:15px;
+font-size:18px;
+}
+
+/* DOSSIER GALERÍA */
+.gallery{
+position:relative;
+width:100%;
+height:80vh;
 overflow:hidden;
 }
 
-/* SLIDER */
 .slider{
 display:flex;
 height:100%;
-transition:transform 0.8s ease-in-out;
+transition:transform 0.6s ease;
 }
 
 .slide{
-min-width:100vw;
-height:100vh;
+min-width:100%;
 position:relative;
 }
 
@@ -44,168 +114,156 @@ position:relative;
 width:100%;
 height:100%;
 object-fit:cover;
-filter:contrast(1.05) brightness(0.95);
 }
 
-/* OVERLAY OSCURO ELEGANTE */
+/* TEXTO SOBRE FOTO */
 .overlay{
 position:absolute;
 bottom:0;
-left:0;
 width:100%;
-padding:60px;
-background:linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0));
-animation:fadeIn 1.5s ease;
+padding:40px;
+background:linear-gradient(to top, rgba(0,0,0,0.9), transparent);
 }
 
-/* TÍTULO PROYECTO */
 .title{
-font-size:32px;
+font-size:30px;
 font-weight:300;
-letter-spacing:1px;
-margin-bottom:10px;
-animation:fadeUp 1.5s ease;
 }
 
-/* DESCRIPCIÓN */
-.description{
+.desc{
 font-size:16px;
-font-weight:200;
-opacity:0.85;
 font-style:italic;
-animation:fadeUp 2s ease;
+opacity:0.8;
+margin-top:5px;
 }
 
-/* METROS / DATOS EN AZUL */
 .meta{
 color:#4cc9ff;
-font-weight:300;
 margin-top:8px;
-font-size:15px;
-animation:fadeUp 2.5s ease;
 }
 
-/* ANIMACIONES */
-@keyframes fadeUp{
-from{opacity:0; transform:translateY(20px);}
-to{opacity:1; transform:translateY(0);}
+/* FLECHAS */
+.arrow{
+position:absolute;
+top:50%;
+transform:translateY(-50%);
+font-size:40px;
+cursor:pointer;
+background:rgba(0,0,0,0.4);
+padding:10px 20px;
+user-select:none;
 }
 
-@keyframes fadeIn{
-from{opacity:0;}
-to{opacity:1;}
-}
+.left{left:10px;}
+.right{right:10px;}
 </style>
 </head>
 
 <body>
 
+<nav>
+<button onclick="showSection('home')">INICIO</button>
+<button onclick="showSection('about')">ACERCA DE</button>
+<button onclick="showSection('trayectoria')">TRAYECTORIA</button>
+<button onclick="showSection('dossier')">DOSSIER FOTOGRÁFICO</button>
+</nav>
+
+<!-- PORTADA -->
+<section id="home" class="section active">
+<div class="hero">
+<h1>ARQ. JOSÉ ABELARDO<br>CENDALES SANTANA</h1>
+<h2>Consultor · Director de Obra · Arquitecto</h2>
+<div class="subtitle">Dossier Fotográfico de Obras Arquitectónicas</div>
+</div>
+</section>
+
+<!-- ACERCA DE -->
+<section id="about" class="section">
+<h1>Acerca del Arquitecto</h1>
+<br><br>
+<p>
+Arquitecto con amplia trayectoria en diseño, dirección y ejecución de obras civiles,
+edificaciones públicas y privadas en Cundinamarca y Colombia.  
+Consultor y Director de obra con experiencia en proyectos institucionales,
+educativos, urbanísticos y de infraestructura.
+</p>
+</section>
+
+<!-- TRAYECTORIA -->
+<section id="trayectoria" class="section">
+<h1>Trayectoria Profesional</h1>
+<br><br>
+<p>
+Arquitecto – Universidad Gran Colombia  
+Especialización en Administración y Gerencia de Sistemas de Calidad – ICONTEC  
+Docente en Dirección de Proyectos Arquitectónicos – Universidad Piloto de Colombia  
+Director de Construcción Plaza de Mercado de Ubaté – 24.000 m²  
+Más de 30 años de experiencia en obras civiles y edificaciones.
+</p>
+</section>
+
+<!-- DOSSIER -->
+<section id="dossier" class="section">
 <div class="gallery">
+<div class="arrow left" onclick="prevSlide()">‹</div>
+<div class="arrow right" onclick="nextSlide()">›</div>
+
 <div class="slider" id="slider">
 
-<!-- FOTO 1 -->
 <div class="slide">
 <img src="img/1.jpeg">
 <div class="overlay">
 <div class="title">Ampliación Planta Física – GANALAC</div>
-<div class="description">Diseño y Construcción, Asociación de Ganaderos de Cucunubá</div>
-<div class="meta">Área 126 m² · Marzo 2022 · Proyecto próximo a construir</div>
+<div class="desc">Cucunubá · Diseño y Construcción</div>
+<div class="meta">Área 126 m² · 2022</div>
 </div>
 </div>
 
-<!-- FOTO 2 -->
-<div class="slide">
-<img src="img/2.png">
-<div class="overlay">
-<div class="title">Cerramiento Colegio Departamental Santa María</div>
-<div class="description">Ubaté, Cundinamarca</div>
-<div class="meta">Área 285 m²</div>
-</div>
-</div>
-
-<!-- FOTO 3 -->
-<div class="slide">
-<img src="img/3.png">
-<div class="overlay">
-<div class="title">Cerramiento Colegio Departamental Santa María</div>
-<div class="description">Ubaté, Cundinamarca</div>
-<div class="meta">Registro técnico 285 m³</div>
-</div>
-</div>
-
-<!-- FOTO 7 -->
 <div class="slide">
 <img src="img/7.png">
 <div class="overlay">
-<div class="title">Ampliación Edificio Occidental – Colegio Cardenal Sancha</div>
-<div class="description">Diseño y Construcción · Bogotá · Buitrago & Cendales</div>
-<div class="meta">Área 1600 m² · 1997</div>
+<div class="title">Colegio Cardenal Sancha</div>
+<div class="desc">Ampliación Edificio Occidental · Bogotá</div>
+<div class="meta">1600 m² · 1997</div>
 </div>
 </div>
 
-<!-- FOTO 9 -->
-<div class="slide">
-<img src="img/9.png">
-<div class="overlay">
-<div class="title">Plaza de Mercado Municipal</div>
-<div class="description">Diseño y Dirección de Obra · Municipio de Ubaté, Cundinamarca</div>
-<div class="meta">Bodegas A, B y C · Área total 24.000 m² · Año 2000</div>
-</div>
-</div>
-
-<!-- FOTO 16 (y variantes 16.1, 16.2, etc) -->
-<div class="slide">
-<img src="img/16.png">
-<div class="overlay">
-<div class="title">Reforzamiento Estructural – Colegio Cardenal Sancha</div>
-<div class="description">Intervención estructural y consolidación técnica</div>
-<div class="meta">Bogotá, Colombia</div>
-</div>
-</div>
-
-<!-- FOTO 27 -->
 <div class="slide">
 <img src="img/27.png">
 <div class="overlay">
 <div class="title">Pavimentación Vereda Guatancuy</div>
-<div class="description">Municipio de Ubaté</div>
+<div class="desc">Municipio de Ubaté</div>
 <div class="meta">Año 2003</div>
 </div>
 </div>
 
 </div>
 </div>
+</section>
 
 <script>
-let slider = document.getElementById('slider');
-let index = 0;
-const total = document.querySelectorAll('.slide').length;
-
-// DESLIZAR AUTOMÁTICO (modo elegante)
-setInterval(()=>{
-index++;
-if(index >= total){
-index = 0;
+function showSection(id){
+document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+document.getElementById(id).classList.add('active');
 }
-slider.style.transform = `translateX(-${index * 100}vw)`;
-}, 6000);
 
-// DESLIZAR CON DEDO (MÓVIL)
-let startX = 0;
+let index=0;
+const slider=document.getElementById("slider");
+const slides=document.querySelectorAll(".slide");
 
-document.addEventListener("touchstart", e=>{
-startX = e.touches[0].clientX;
-});
-
-document.addEventListener("touchend", e=>{
-let endX = e.changedTouches[0].clientX;
-if(startX > endX + 50){
-index = (index + 1) % total;
+function nextSlide(){
+index=(index+1)%slides.length;
+slider.style.transform=`translateX(-${index*100}%)`;
 }
-if(startX < endX - 50){
-index = (index - 1 + total) % total;
+
+function prevSlide(){
+index=(index-1+slides.length)%slides.length;
+slider.style.transform=`translateX(-${index*100}%)`;
 }
-slider.style.transform = `translateX(-${index * 100}vw)`;
+
+document.addEventListener("keydown",(e)=>{
+if(e.key==="ArrowRight") nextSlide();
+if(e.key==="ArrowLeft") prevSlide();
 });
 </script>
 
