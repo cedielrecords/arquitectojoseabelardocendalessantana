@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dossier Fotográfico – Arquitecto José Abelardo Cendales Santana</title>
+<title>Dossier Fotográfico - Arquitecto José Abelardo Cendales Santana</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
@@ -15,26 +15,22 @@
         <h1>JOSÉ ABELARDO<br>CENDALES SANTANA</h1>
         <h2>ARQUITECTO</h2>
         <p class="subtitulo">DOSSIER FOTOGRÁFICO DE OBRAS CIVILES Y ARQUITECTÓNICAS</p>
-        <button id="btnEntrar">CONTINUAR</button>
+        <button id="btnContinuar">CONTINUAR</button>
     </div>
 </section>
 
 <!-- GALERÍA -->
 <section id="galeria" class="oculto">
-
     <div class="visor">
-        <button class="flecha izquierda" onclick="anterior()">❮</button>
+        <button class="flecha izquierda" id="prev">←</button>
 
         <div class="imagen-container">
-            <img id="imagen" src="img/1.jpeg" alt="obra">
-            <div class="pie">
-                <h3 id="titulo">Cargando...</h3>
-            </div>
+            <img id="imagenActual" src="" alt="Obra">
+            <div class="caption" id="caption"></div>
         </div>
 
-        <button class="flecha derecha" onclick="siguiente()">❯</button>
+        <button class="flecha derecha" id="next">→</button>
     </div>
-
 </section>
 
 <script src="script.js"></script>
