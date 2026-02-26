@@ -1,75 +1,58 @@
-const images = [
-"img/1.jpeg",
-"img/2.png",
-"img/3.png",
-"img/4.png",
-"img/6.png",
-"img/7.png",
-"img/8.png",
-"img/9.png",
-"img/10.png",
-"img/11.png",
-"img/12.png",
-"img/13.1.png",
-"img/13.2.png",
-"img/14.1.png",
-"img/14.2.png",
-"img/14.3.png",
-"img/14.4.png",
-"img/14.5.png",
-"img/14.6.png",
-"img/14.7.png",
-"img/15.2.png",
-"img/16.png",
-"img/16.1.png",
-"img/16.2.png",
-"img/16.3.png",
-"img/17.png",
-"img/17.1.png",
-"img/18.png",
-"img/22.jpeg",
-"img/23.jpeg",
-"img/24.png",
-"img/25.png",
-"img/26.png",
-"img/27.png",
-"img/28.png"
+const fotos = [
+    { img: "img/1.jpeg", texto: "Diseño y Construcción Ampliación planta física, Asociación de Ganaderos de Cucunubá, GANALAC. Área 126 m². Marzo 2022." },
+    { img: "img/2.png", texto: "Construcción cerramiento Colegio Departamental Santa María, Ubaté, Cundinamarca. Área 285 m²." },
+    { img: "img/3.png", texto: "Construcción cerramiento Colegio Departamental Santa María, Ubaté, Cundinamarca. Área 285 m³." },
+    { img: "img/4.png", texto: "Reconstrucción Alcaldía Municipio de Susa, Cundinamarca. Año 1992." },
+    { img: "img/6.png", texto: "Diseño y construcción Casa Cural, Municipio de Guachetá, Cundinamarca. Año 1990." },
+    { img: "img/7.png", texto: "Diseño y construcción ampliación edificio occidental Colegio Cardenal Sancha, Bogotá. Año 1997. Área 1600 m²." },
+    { img: "img/8.png", texto: "Ampliación edificio occidental Colegio Cardenal Sancha, Bogotá. Buitrago & Cendales." },
+    { img: "img/9.png", texto: "Diseño y dirección de obra Plaza de Mercado del Municipio de Ubaté, Cundinamarca. Año 2000." },
+    { img: "img/10.png", texto: "Plaza de Mercado del Municipio de Ubaté – Bodegas A, B y C. Área total 24.000 m²." },
+    { img: "img/11.png", texto: "Dirección de obra Plaza de Mercado del Municipio de Ubaté, Cundinamarca." },
+    { img: "img/12.png", texto: "Proyecto Plaza de Mercado del Municipio de Ubaté, Cundinamarca." },
+    { img: "img/13.1.png", texto: "Reforzamiento estructural del Colegio Cardenal Sancha, Bogotá." },
+    { img: "img/14.1.png", texto: "Proceso de reforzamiento estructural – Colegio Cardenal Sancha, Bogotá." },
+    { img: "img/16.png", texto: "Intervención estructural y consolidación técnica – Colegio Cardenal Sancha, Bogotá." },
+    { img: "img/17.png", texto: "Reforzamiento estructural del Colegio Cardenal Sancha en Bogotá." },
+    { img: "img/18.png", texto: "Obra de reforzamiento estructural Colegio Cardenal Sancha." },
+    { img: "img/22.jpeg", texto: "Diseño de vivienda Fusagasugá, propiedad Jhanett Palencia. Año 2015." },
+    { img: "img/23.jpeg", texto: "Diseño de vivienda Fusagasugá, propiedad Jhanett Palencia. Año 2016." },
+    { img: "img/24.png", texto: "Diseño de vivienda, propietaria Marcela Silva, La Vega, Cundinamarca. Año 2022. Área 235 m²." },
+    { img: "img/25.png", texto: "Proyecto vivienda Marcela Silva – La Vega, Cundinamarca." },
+    { img: "img/26.png", texto: "Desarrollo arquitectónico vivienda La Vega, Cundinamarca." },
+    { img: "img/27.png", texto: "Pavimentación Vereda Guatancuy, Municipio de Ubaté. Año 2003." },
+    { img: "img/28.png", texto: "Pavimentación Vereda Guatancuy, Municipio de Ubaté. Año 2004." }
 ];
 
-const captions = {
-1: "Diseño y Construcción Ampliación planta física, GANALAC. Área 126 m2 - Marzo 2022",
-2: "Construcción cerramiento colegio departamental Santa María Ubaté",
-3: "Construcción cerramiento colegio departamental Santa María Ubaté",
-4: "Reconstrucción alcaldía municipio Susa, Cundinamarca 1992",
-5: "Reconstrucción alcaldía municipio Susa, Cundinamarca 1993",
-6: "Diseño y construcción casa cural Guachetá 1990",
-7: "Ampliación edificio occidental Colegio Cardenal Sancha Bogotá 1997",
-13: "Reforzamiento estructural del Colegio Cardenal Sancha en Bogotá",
-16: "Reforzamiento estructural del Colegio Cardenal Sancha en Bogotá",
-17: "Reforzamiento estructural del Colegio Cardenal Sancha en Bogotá",
-27: "Pavimentación Vereda Guatancuy, Ubaté 2003",
-28: "Pavimentación Vereda Guatancuy, Ubaté 2004"
+let indice = 0;
+
+const imagen = document.getElementById("imagen");
+const titulo = document.getElementById("titulo");
+const portada = document.getElementById("portada");
+const galeria = document.getElementById("galeria");
+const btnEntrar = document.getElementById("btnEntrar");
+
+btnEntrar.onclick = () => {
+    portada.style.display = "none";
+    galeria.classList.remove("oculto");
+    mostrarFoto();
 };
 
-let index = 0;
-const imgElement = document.getElementById("galleryImage");
-const captionElement = document.getElementById("caption");
-
-function showImage() {
-    imgElement.src = images[index];
-
-    let number = images[index].match(/\d+/)[0];
-    captionElement.textContent = captions[number] || "Registro fotográfico de obra arquitectónica";
+function mostrarFoto(){
+    imagen.style.opacity = 0;
+    setTimeout(() => {
+        imagen.src = fotos[indice].img;
+        titulo.textContent = fotos[indice].texto;
+        imagen.style.opacity = 1;
+    }, 200);
 }
 
-function nextImage() {
-    index = (index + 1) % images.length;
-    showImage();
+function siguiente(){
+    indice = (indice + 1) % fotos.length;
+    mostrarFoto();
 }
 
-function prevImage() {
-    index = (index - 1 + images.length) % images.length;
-    showImage();
+function anterior(){
+    indice = (indice - 1 + fotos.length) % fotos.length;
+    mostrarFoto();
 }
-
-showImage();
