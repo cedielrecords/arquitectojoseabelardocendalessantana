@@ -3,80 +3,38 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Arquitecto José Abelardo Cendales Santana</title>
-
+<title>Dossier Fotográfico – Arquitecto José Abelardo Cendales Santana</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- NAVBAR -->
-<nav class="navbar">
-    <div class="logo">JACS</div>
-    <ul>
-        <li><a href="#inicio">Inicio</a></li>
-        <li><a href="#acerca">Acerca de</a></li>
-        <li><a href="#trayectoria">Trayectoria</a></li>
-        <li><a href="#dossier">Dosier Fotográfico</a></li>
-    </ul>
-</nav>
-
-<!-- PORTADA NEGRA (SIN FOTO) -->
-<section id="inicio" class="hero">
-    <h1>JOSÉ ABELARDO<br>CENDALES SANTANA</h1>
-    <h2>ARQUITECTO</h2>
-    <p>Dosier Fotográfico · Trayectoria Profesional · Obras Civiles y Arquitectónicas</p>
-</section>
-
-<!-- ACERCA DE -->
-<section id="acerca" class="section">
-    <h2 class="titulo-azul">ACERCA DE</h2>
-    <p class="texto">
-        Arquitecto especialista en Administración y Gerencia de Sistemas de Calidad.
-        Consultor y Director de obra en proyectos de infraestructura y edificaciones públicas y privadas.
-        Docente en Dirección de Proyectos y Gestión de proyectos urbano arquitectónicos.
-    </p>
-</section>
-
-<!-- TRAYECTORIA -->
-<section id="trayectoria" class="section">
-    <h2 class="titulo-azul">TRAYECTORIA PROFESIONAL</h2>
-
-    <div class="grid">
-        <div>
-            <h3>ESTUDIOS SUPERIORES</h3>
-            <p>Arquitecto – Universidad Gran Colombia, 1987</p>
-            <p>Especialización en Administración y Gerencia de Sistemas de Calidad</p>
-            <p>Universidad Santo Tomás – ICONTEC (2002–2004)</p>
-        </div>
-
-        <div>
-            <h3>EXPERIENCIA LABORAL</h3>
-            <p><strong>Docente</strong> – Universidad Piloto de Colombia (2007 – 2024)</p>
-            <p>Director Construcción Plaza de Mercado – Ubaté (2000)</p>
-            <p>Arquitecto Diseñador – Gobernación de Cundinamarca</p>
-        </div>
+<!-- PORTADA -->
+<section id="portada">
+    <div class="portada-contenido">
+        <h1>JOSÉ ABELARDO<br>CENDALES SANTANA</h1>
+        <h2>ARQUITECTO</h2>
+        <p class="subtitulo">DOSSIER FOTOGRÁFICO DE OBRAS CIVILES Y ARQUITECTÓNICAS</p>
+        <button id="btnEntrar">CONTINUAR</button>
     </div>
 </section>
 
-<!-- DOSSIER FOTOGRÁFICO FULLSCREEN -->
-<section id="dossier" class="dossier">
-    <h2 class="titulo-azul">DOSIER FOTOGRÁFICO DE OBRA</h2>
+<!-- GALERÍA -->
+<section id="galeria" class="oculto">
 
     <div class="visor">
-        <button class="flecha izquierda" onclick="anterior()">←</button>
+        <button class="flecha izquierda" onclick="anterior()">❮</button>
 
-        <img id="fotoGrande" src="img/1.jpeg" alt="obra arquitectónica">
+        <div class="imagen-container">
+            <img id="imagen" src="img/1.jpeg" alt="obra">
+            <div class="pie">
+                <h3 id="titulo">Cargando...</h3>
+            </div>
+        </div>
 
-        <button class="flecha derecha" onclick="siguiente()">→</button>
+        <button class="flecha derecha" onclick="siguiente()">❯</button>
     </div>
 
-    <div class="caption">
-        <h3 id="tituloFoto">Diseño y Construcción Ampliación planta física – GANALAC</h3>
-        <p id="descripcionFoto">
-            Asociación de Ganaderos de Cucunubá · Área 126 m² · Marzo 2022
-        </p>
-    </div>
 </section>
 
 <script src="script.js"></script>
