@@ -5,251 +5,208 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Arquitecto José Abelardo Cendales Santana</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;500;600&display=swap" rel="stylesheet">
-
 <style>
 *{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:'Montserrat', sans-serif;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family: "Helvetica Neue", Arial, sans-serif;
 }
 
 body{
-  background:#05070a;
-  overflow:hidden;
-  color:#e6edf5;
+background:#050505;
+color:white;
+overflow:hidden;
 }
 
-/* NAVBAR */
-nav{
-  position:fixed;
-  top:0;
-  width:100%;
-  height:70px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  background:rgba(0,0,0,0.55);
-  backdrop-filter:blur(10px);
-  z-index:999;
-}
-
-nav h1{
-  font-weight:300;
-  letter-spacing:3px;
-  font-size:14px;
-  color:#9fb3c8;
-}
-
-/* GALERIA FULLSCREEN */
+/* CONTENEDOR GALERÍA */
 .gallery{
-  width:100vw;
-  height:100vh;
-  position:relative;
+position:relative;
+width:100vw;
+height:100vh;
+overflow:hidden;
+}
+
+/* SLIDER */
+.slider{
+display:flex;
+height:100%;
+transition:transform 0.8s ease-in-out;
 }
 
 .slide{
-  position:absolute;
-  width:100%;
-  height:100%;
-  opacity:0;
-  transition:opacity 1.2s ease-in-out;
-}
-
-.slide.active{
-  opacity:1;
+min-width:100vw;
+height:100vh;
+position:relative;
 }
 
 .slide img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
+width:100%;
+height:100%;
+object-fit:cover;
+filter:contrast(1.05) brightness(0.95);
 }
 
-/* OVERLAY INSTITUCIONAL */
+/* OVERLAY OSCURO ELEGANTE */
 .overlay{
-  position:absolute;
-  bottom:0;
-  width:100%;
-  padding:60px 80px;
-  background:linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0));
+position:absolute;
+bottom:0;
+left:0;
+width:100%;
+padding:60px;
+background:linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0));
+animation:fadeIn 1.5s ease;
 }
 
+/* TÍTULO PROYECTO */
 .title{
-  font-size:28px;
-  font-weight:500;
-  letter-spacing:1px;
-  margin-bottom:10px;
-  animation:fadeUp 1.2s ease;
+font-size:32px;
+font-weight:300;
+letter-spacing:1px;
+margin-bottom:10px;
+animation:fadeUp 1.5s ease;
 }
 
-.subtitle{
-  font-size:15px;
-  font-weight:200;
-  font-style:italic;
-  color:#c8d2dc;
-  margin-bottom:8px;
-  animation:fadeUp 1.6s ease;
+/* DESCRIPCIÓN */
+.description{
+font-size:16px;
+font-weight:200;
+opacity:0.85;
+font-style:italic;
+animation:fadeUp 2s ease;
 }
 
-.area{
-  font-size:14px;
-  font-weight:400;
-  color:#3ea6ff;
-  letter-spacing:1px;
-  animation:fadeUp 2s ease;
+/* METROS / DATOS EN AZUL */
+.meta{
+color:#4cc9ff;
+font-weight:300;
+margin-top:8px;
+font-size:15px;
+animation:fadeUp 2.5s ease;
 }
 
+/* ANIMACIONES */
 @keyframes fadeUp{
-  from{
-    opacity:0;
-    transform:translateY(20px);
-  }
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
+from{opacity:0; transform:translateY(20px);}
+to{opacity:1; transform:translateY(0);}
 }
 
-/* INDICADOR */
-.counter{
-  position:fixed;
-  bottom:20px;
-  right:30px;
-  font-size:13px;
-  color:#8fa3b8;
-  letter-spacing:2px;
+@keyframes fadeIn{
+from{opacity:0;}
+to{opacity:1;}
 }
 </style>
 </head>
+
 <body>
 
-<nav>
-  <h1>ARQUITECTO JOSÉ ABELARDO CENDALES SANTANA — DOSSIER DE OBRA</h1>
-</nav>
+<div class="gallery">
+<div class="slider" id="slider">
 
-<div class="gallery" id="gallery"></div>
-<div class="counter" id="counter"></div>
+<!-- FOTO 1 -->
+<div class="slide">
+<img src="img/1.jpeg">
+<div class="overlay">
+<div class="title">Ampliación Planta Física – GANALAC</div>
+<div class="description">Diseño y Construcción, Asociación de Ganaderos de Cucunubá</div>
+<div class="meta">Área 126 m² · Marzo 2022 · Proyecto próximo a construir</div>
+</div>
+</div>
+
+<!-- FOTO 2 -->
+<div class="slide">
+<img src="img/2.png">
+<div class="overlay">
+<div class="title">Cerramiento Colegio Departamental Santa María</div>
+<div class="description">Ubaté, Cundinamarca</div>
+<div class="meta">Área 285 m²</div>
+</div>
+</div>
+
+<!-- FOTO 3 -->
+<div class="slide">
+<img src="img/3.png">
+<div class="overlay">
+<div class="title">Cerramiento Colegio Departamental Santa María</div>
+<div class="description">Ubaté, Cundinamarca</div>
+<div class="meta">Registro técnico 285 m³</div>
+</div>
+</div>
+
+<!-- FOTO 7 -->
+<div class="slide">
+<img src="img/7.png">
+<div class="overlay">
+<div class="title">Ampliación Edificio Occidental – Colegio Cardenal Sancha</div>
+<div class="description">Diseño y Construcción · Bogotá · Buitrago & Cendales</div>
+<div class="meta">Área 1600 m² · 1997</div>
+</div>
+</div>
+
+<!-- FOTO 9 -->
+<div class="slide">
+<img src="img/9.png">
+<div class="overlay">
+<div class="title">Plaza de Mercado Municipal</div>
+<div class="description">Diseño y Dirección de Obra · Municipio de Ubaté, Cundinamarca</div>
+<div class="meta">Bodegas A, B y C · Área total 24.000 m² · Año 2000</div>
+</div>
+</div>
+
+<!-- FOTO 16 (y variantes 16.1, 16.2, etc) -->
+<div class="slide">
+<img src="img/16.png">
+<div class="overlay">
+<div class="title">Reforzamiento Estructural – Colegio Cardenal Sancha</div>
+<div class="description">Intervención estructural y consolidación técnica</div>
+<div class="meta">Bogotá, Colombia</div>
+</div>
+</div>
+
+<!-- FOTO 27 -->
+<div class="slide">
+<img src="img/27.png">
+<div class="overlay">
+<div class="title">Pavimentación Vereda Guatancuy</div>
+<div class="description">Municipio de Ubaté</div>
+<div class="meta">Año 2003</div>
+</div>
+</div>
+
+</div>
+</div>
 
 <script>
-// ====== TUS DESCRIPCIONES DEL EXCEL (YA INTEGRADAS) ======
-const descriptions = {
-"1": "Diseño y Construcción Ampliación planta física, Asociación de Ganaderos de Cucunubá, GANALAC. Área 126 m² — Marzo 2022",
-"2": "Construcción cerramiento Colegio Departamental Santa María, Ubaté, Cundinamarca — Área 285 m²",
-"3": "Construcción cerramiento Colegio Departamental Santa María, Ubaté, Cundinamarca — Área 285 m³",
-"4": "Reconstrucción Alcaldía Municipio de Susa, Cundinamarca — Año 1992",
-"5": "Reconstrucción Alcaldía Municipio de Susa, Cundinamarca — Año 1993",
-"6": "Diseño y construcción Casa Cural, Municipio de Guachetá, Cundinamarca — Año 1990",
-"7": "Diseño y construcción ampliación edificio occidental Colegio Cardenal Sancha, Bogotá — 1997 — Área 1600 m²",
-"8": "Diseño y construcción ampliación edificio occidental Colegio Cardenal Sancha, Bogotá — 1997",
-"9": "Diseño y dirección de obra Plaza de Mercado del Municipio de Ubaté, Cundinamarca — Año 2000 — Área total 24.000 m²",
-"10": "Diseño y dirección de obra Plaza de Mercado del Municipio de Ubaté, Cundinamarca — Año 2000",
-"11": "Dirección de obra Plaza de Mercado del Municipio de Ubaté — Bodegas A, B y C",
-"12": "Dirección de obra Plaza de Mercado del Municipio de Ubaté — Proceso constructivo",
-"13": "Reforzamiento estructural del Colegio Cardenal Sancha, Bogotá",
-"14": "Reforzamiento estructural del Colegio Cardenal Sancha, Bogotá",
-"15": "Reforzamiento estructural del Colegio Cardenal Sancha, Bogotá",
-"16": "Reforzamiento estructural del Colegio Cardenal Sancha, Bogotá",
-"17": "Reforzamiento estructural del Colegio Cardenal Sancha, Bogotá",
-"18": "Reforzamiento estructural del Colegio Cardenal Sancha, Bogotá",
-"19": "Reforzamiento estructural del Colegio Cardenal Sancha, Bogotá",
-"20": "Reforzamiento estructural del Colegio Cardenal Sancha, Bogotá",
-"21": "Reforzamiento estructural del Colegio Cardenal Sancha, Bogotá",
-"22": "Diseño vivienda Fusagasugá — Propiedad Jhanett Palencia — Año 2015",
-"23": "Diseño vivienda Fusagasugá — Propiedad Jhanett Palencia — Año 2016",
-"24": "Diseño de vivienda La Vega, Cundinamarca — Propietaria Marcela Silva — Área 235 m² — Año 2022",
-"25": "Diseño de vivienda La Vega, Cundinamarca — Propietaria Marcela Silva — Área 235 m² — Año 2022",
-"26": "Diseño de vivienda La Vega, Cundinamarca — Propietaria Marcela Silva — Área 235 m² — Año 2022",
-"27": "Pavimentación Vereda Guatancuy, Municipio Ubaté — Año 2003",
-"28": "Pavimentación Vereda Guatancuy, Municipio Ubaté — Año 2004"
-};
+let slider = document.getElementById('slider');
+let index = 0;
+const total = document.querySelectorAll('.slide').length;
 
-// ====== NOMBRES EXACTOS DE TUS ARCHIVOS (GITHUB) ======
-const images = [
-"1.jpeg","2.png","3.png","4.png","6.png","7.png","8.png","9.png","10.png","11.png","12.png",
-"13.1.png","13.2.png",
-"14.1.png","14.2.png","14.3.png","14.4.png","14.5.png","14.6.png","14.7.png",
-"15.2.png",
-"16.png","16.1.png","16.2.png","16.3.png",
-"17.png","17.1.png",
-"18.png","22.jpeg","23.jpeg","24.png","25.png","26.png","27.png","28.png"
-];
-
-const gallery = document.getElementById("gallery");
-const counter = document.getElementById("counter");
-let current = 0;
-
-function getProjectId(filename){
-  return filename.split('.')[0]; // 16.1 -> 16
+// DESLIZAR AUTOMÁTICO (modo elegante)
+setInterval(()=>{
+index++;
+if(index >= total){
+index = 0;
 }
+slider.style.transform = `translateX(-${index * 100}vw)`;
+}, 6000);
 
-function createSlides(){
-  images.forEach((imgName, index)=>{
-    const projectId = getProjectId(imgName);
-    const desc = descriptions[projectId] || "Proyecto arquitectónico";
-
-    const slide = document.createElement("div");
-    slide.classList.add("slide");
-    if(index===0) slide.classList.add("active");
-
-    slide.innerHTML = `
-      <img src="img/${imgName}" alt="Proyecto arquitectónico">
-      <div class="overlay">
-        <div class="title">${desc.split('—')[0]}</div>
-        <div class="subtitle">${desc.includes('—') ? desc.split('—')[1] : ''}</div>
-        <div class="area">Registro Fotográfico de Obra</div>
-      </div>
-    `;
-
-    gallery.appendChild(slide);
-  });
-  updateCounter();
-}
-
-function showSlide(index){
-  const slides = document.querySelectorAll(".slide");
-  slides.forEach(s=>s.classList.remove("active"));
-  slides[index].classList.add("active");
-  updateCounter();
-}
-
-function updateCounter(){
-  counter.textContent = `${current+1} / ${images.length}`;
-}
-
-// Swipe móvil
+// DESLIZAR CON DEDO (MÓVIL)
 let startX = 0;
 
 document.addEventListener("touchstart", e=>{
-  startX = e.touches[0].clientX;
+startX = e.touches[0].clientX;
 });
 
 document.addEventListener("touchend", e=>{
-  let endX = e.changedTouches[0].clientX;
-  if(startX - endX > 50){
-    current = (current+1)%images.length;
-    showSlide(current);
-  }
-  if(endX - startX > 50){
-    current = (current-1+images.length)%images.length;
-    showSlide(current);
-  }
+let endX = e.changedTouches[0].clientX;
+if(startX > endX + 50){
+index = (index + 1) % total;
+}
+if(startX < endX - 50){
+index = (index - 1 + total) % total;
+}
+slider.style.transform = `translateX(-${index * 100}vw)`;
 });
-
-// Flechas teclado (pro)
-document.addEventListener("keydown", e=>{
-  if(e.key === "ArrowRight"){
-    current = (current+1)%images.length;
-    showSlide(current);
-  }
-  if(e.key === "ArrowLeft"){
-    current = (current-1+images.length)%images.length;
-    showSlide(current);
-  }
-});
-
-createSlides();
 </script>
 
 </body>
