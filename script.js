@@ -7,15 +7,15 @@ const imagenes = [
   { src: "img/7.png", caption: "Proyecto estructural institucional." },
   { src: "img/8.png", caption: "Infraestructura educativa - Bogotá." },
   { src: "img/9.png", caption: "Desarrollo técnico y constructivo." },
-  { src: "img/10.png", caption: "Proyecto arquitectónico y estructural." }
+  { src: "img/10.png", caption: "Proyecto arquitectónico y estructural." },
+  { src: "img/11.png", caption: "Intervención estructural especializada." },
+  { src: "img/12.png", caption: "Obra arquitectónica institucional." }
 ];
 
 let indice = 0;
-let modoEncajar = false;
-let ultimoTap = 0;
+let startX = 0;
 
 document.addEventListener("DOMContentLoaded", () => {
-
   const img = document.getElementById("imagenActual");
   const caption = document.getElementById("caption");
   const btnContinuar = document.getElementById("btnContinuar");
@@ -24,26 +24,22 @@ document.addEventListener("DOMContentLoaded", () => {
   const next = document.getElementById("next");
   const prev = document.getElementById("prev");
 
-  function mostrarImagen(n) {
-    indice = (n + imagenes.length) % imagenes.length;
+  // Cargar caption inicial (evita vacío)
+  caption.textContent = imagenes[0].caption;
 
-    const nuevaSrc = imagenes[indice].src;
-    const nuevaCaption = imagenes[indice].caption;
+  function mostrarImagen(nuevoIndice) {
+    indice = (nuevoIndice + imagenes.length) % imagenes.length;
 
-    // Fade suave SIN pantalla negra
-    img.style.opacity = "0.3";
+    img.style.opacity = "0.4"; // fade suave sin negro
 
-    const nuevaImg = new Image();
-    nuevaImg.src = nuevaSrc;
-
-    nuevaImg.onload = () => {
-      img.src = nuevaSrc;
-      caption.textContent = nuevaCaption;
+    setTimeout(() => {
+      img.src = imagenes[indice].src;
+      caption.textContent = imagenes[indice].caption;
       img.style.opacity = "1";
-    };
+    }, 150);
   }
 
-  // CONTINUAR (fade elegante, no toca tu intro visual)
+  // CONTINUAR (mantiene tu intro intacta)
   btnContinuar.addEventListener("click", () => {
     portada.style.transition = "opacity 0.8s ease";
     portada.style.opacity = "0";
@@ -51,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
       portada.style.display = "none";
       galeria.classList.remove("oculto");
-      mostrarImagen(0); // CARGA INMEDIATA PRIMERA IMAGEN
+      mostrarImagen(0);
     }, 800);
   });
 
@@ -59,28 +55,21 @@ document.addEventListener("DOMContentLoaded", () => {
   next.addEventListener("click", () => mostrarImagen(indice + 1));
   prev.addEventListener("click", () => mostrarImagen(indice - 1));
 
-  // Swipe móvil suave
-  let startX = 0;
-  document.addEventListener("touchstart", e => {
+  // Swipe móvil estable (sin bugs)
+  document.addEventListener("touchstart", (e) => {
     startX = e.touches[0].clientX;
   }, { passive: true });
 
-  document.addEventListener("touchend", e => {
+  document.addEventListener("touchend", (e) => {
     const endX = e.changedTouches[0].clientX;
     const diff = startX - endX;
 
     if (Math.abs(diff) > 50) {
-      if (diff > 0) mostrarImagen(indice + 1);
-      else mostrarImagen(indice - 1);
+      if (diff > 0) {
+        mostrarImagen(indice + 1);
+      } else {
+        mostrarImagen(indice - 1);
+      }
     }
-
-    // Doble tap = encajar / fullscreen
-    const ahora = new Date().getTime();
-    if (ahora - ultimoTap < 300) {
-      modoEncajar = !modoEncajar;
-      img.classList.toggle("encajar", modoEncajar);
-    }
-    ultimoTap = ahora;
   });
-
 });
