@@ -27,9 +27,9 @@ const imagenes = [
 
 let indice = 0;
 
-// ESPERAR A QUE EL DOM CARGUE (ESTO ARREGLA EL BOTÓN CONTINUAR)
-document.addEventListener("DOMContentLoaded", () => {
-document.getElementById("btnContinuar")
+document.addEventListener("DOMContentLoaded", function () {
+
+  // ELEMENTOS (coherentes con tu HTML corregido)
   const img = document.getElementById("imagenActual");
   const caption = document.getElementById("caption");
   const btnContinuar = document.getElementById("btnContinuar");
@@ -38,58 +38,97 @@ document.getElementById("btnContinuar")
   const next = document.getElementById("next");
   const prev = document.getElementById("prev");
 
-  function mostrarImagen(n) {
-    if (!img) return;
+  // Verificación de seguridad (evita que todo se rompa si algo falta)
+  if (!img || !caption || !btnContinuar || !portada || !galeria) {
+    console.error("Error: elementos del DOM no encontrados.");
+    return;
+  }
 
-    indice = n;
+  // FUNCIÓN PRINCIPAL (fade suave + carga segura)
+  function mostrarImagen(nuevoIndice) {
+    indice = nuevoIndice;
+
     if (indice >= imagenes.length) indice = 0;
     if (indice < 0) indice = imagenes.length - 1;
 
-    img.style.opacity = 0;
+    const nuevaImagen = new Image();
+    nuevaImagen.src = imagenes[indice].src;
 
-    setTimeout(() => {
-      img.src = imagenes[indice].src;
+    // Fade out
+    img.style.opacity = "0";
+
+    nuevaImagen.onload = () => {
+      img.src = nuevaImagen.src;
       caption.textContent = imagenes[indice].caption;
-      img.style.opacity = 1;
-    }, 300);
+
+      // Fade in suave (cinematográfico)
+      requestAnimationFrame(() => {
+        img.style.opacity = "1";
+      });
+    };
+
+    // Si una imagen falla, no rompe la galería
+    nuevaImagen.onerror = () => {
+      console.warn("No se pudo cargar:", imagenes[indice].src);
+      caption.textContent = "Imagen no disponible.";
+      img.style.opacity = "1";
+    };
   }
 
-  // BOTÓN CONTINUAR
-  if (btnContinuar) {
-    btnContinuar.addEventListener("click", () => {
+  // BOTÓN CONTINUAR (NO toca el diseño del intro)
+  btnContinuar.addEventListener("click", function () {
+    // Desvanecer portada suavemente
+    portada.style.transition = "opacity 0.8s ease";
+    portada.style.opacity = "0";
+
+    setTimeout(() => {
       portada.style.display = "none";
       galeria.classList.remove("oculto");
       mostrarImagen(0);
-    });
-  }
+    }, 800);
+  });
 
-  // FLECHAS
+  // FLECHA DERECHA
   if (next) {
-    next.addEventListener("click", () => {
+    next.addEventListener("click", function () {
       mostrarImagen(indice + 1);
     });
   }
 
+  // FLECHA IZQUIERDA
   if (prev) {
-    prev.addEventListener("click", () => {
+    prev.addEventListener("click", function () {
       mostrarImagen(indice - 1);
     });
   }
 
-  // SWIPE MÓVIL (UX premium)
+  // SWIPE MÓVIL (iPhone UX real)
   let startX = 0;
 
-  document.addEventListener("touchstart", (e) => {
+  document.addEventListener("touchstart", function (e) {
     startX = e.touches[0].clientX;
+  }, { passive: true });
+
+  document.addEventListener("touchend", function (e) {
+    const endX = e.changedTouches[0].clientX;
+    const diff = startX - endX;
+
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) {
+        mostrarImagen(indice + 1); // swipe izquierda
+      } else {
+        mostrarImagen(indice - 1); // swipe derecha
+      }
+    }
   });
 
-  document.addEventListener("touchend", (e) => {
-    let endX = e.changedTouches[0].clientX;
-    let diff = startX - endX;
+  // SCROLL PARA CAMBIAR IMÁGENES (efecto dossier premium)
+  window.addEventListener("wheel", function (e) {
+    if (galeria.classList.contains("oculto")) return;
 
-    if (diff > 50) {
+    if (e.deltaY > 0) {
       mostrarImagen(indice + 1);
-    } else if (diff < -50) {
+    } else {
       mostrarImagen(indice - 1);
     }
   });
