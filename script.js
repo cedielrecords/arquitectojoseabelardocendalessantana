@@ -7,37 +7,14 @@ const imagenes = [
   { src: "img/7.png", caption: "Proyecto estructural institucional." },
   { src: "img/8.png", caption: "Infraestructura educativa - Bogotá." },
   { src: "img/9.png", caption: "Desarrollo técnico y constructivo." },
-  { src: "img/10.png", caption: "Proyecto arquitectónico y estructural." },
-  { src: "img/11.png", caption: "Intervención estructural especializada." },
-  { src: "img/12.png", caption: "Obra arquitectónica institucional." },
-  { src: "img/13.1.png", caption: "Desarrollo urbano y arquitectónico." },
-  { src: "img/14.1.png", caption: "Proyecto de ampliación arquitectónica." },
-  { src: "img/15.2.png", caption: "Reforzamiento estructural - Colegio Cardenal Sancha, Bogotá." },
-  { src: "img/16.png", caption: "Ejecución de obra civil y supervisión arquitectónica." },
-  { src: "img/17.png", caption: "Infraestructura institucional educativa." },
-  { src: "img/18.png", caption: "Desarrollo técnico y constructivo arquitectónico." },
-  { src: "img/22.jpeg", caption: "Proyecto arquitectónico - documentación fotográfica." },
-  { src: "img/23.jpeg", caption: "Registro de obra civil y proceso constructivo." },
-  { src: "img/24.png", caption: "Diseño arquitectónico estructural." },
-  { src: "img/25.png", caption: "Ejecución y dirección de obra." },
-  { src: "img/26.png", caption: "Proyecto institucional arquitectónico." },
-  { src: "img/27.png", caption: "Infraestructura y desarrollo constructivo." },
-  { src: "img/28.png", caption: "Obra arquitectónica finalizada." }
+  { src: "img/10.png", caption: "Proyecto arquitectónico y estructural." }
 ];
 
 let indice = 0;
 let modoEncajar = false;
 let ultimoTap = 0;
 
-// PRELOAD para evitar pantalla negra
-const cacheImagenes = [];
-imagenes.forEach(img => {
-  const i = new Image();
-  i.src = img.src;
-  cacheImagenes.push(i);
-});
-
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
 
   const img = document.getElementById("imagenActual");
   const caption = document.getElementById("caption");
@@ -47,40 +24,34 @@ document.addEventListener("DOMContentLoaded", function () {
   const next = document.getElementById("next");
   const prev = document.getElementById("prev");
 
-  function mostrarImagen(nuevoIndice) {
-    indice = nuevoIndice;
+  function mostrarImagen(n) {
+    indice = (n + imagenes.length) % imagenes.length;
 
-    if (indice >= imagenes.length) indice = 0;
-    if (indice < 0) indice = imagenes.length - 1;
+    const nuevaSrc = imagenes[indice].src;
+    const nuevaCaption = imagenes[indice].caption;
 
-    const nueva = cacheImagenes[indice];
+    // Fade suave SIN pantalla negra
+    img.style.opacity = "0.3";
 
-    // NO ocultamos la imagen hasta que la nueva esté lista (evita negro)
-    if (nueva.complete) {
-      img.style.opacity = "0.4";
-      setTimeout(() => {
-        img.src = nueva.src;
-        caption.textContent = imagenes[indice].caption;
-        img.style.opacity = "1";
-      }, 120);
-    } else {
-      nueva.onload = () => {
-        img.src = nueva.src;
-        caption.textContent = imagenes[indice].caption;
-        img.style.opacity = "1";
-      };
-    }
+    const nuevaImg = new Image();
+    nuevaImg.src = nuevaSrc;
+
+    nuevaImg.onload = () => {
+      img.src = nuevaSrc;
+      caption.textContent = nuevaCaption;
+      img.style.opacity = "1";
+    };
   }
 
-  // CONTINUAR (sin tocar tu intro visual)
-  btnContinuar.addEventListener("click", function () {
+  // CONTINUAR (fade elegante, no toca tu intro visual)
+  btnContinuar.addEventListener("click", () => {
     portada.style.transition = "opacity 0.8s ease";
     portada.style.opacity = "0";
 
     setTimeout(() => {
       portada.style.display = "none";
       galeria.classList.remove("oculto");
-      mostrarImagen(0);
+      mostrarImagen(0); // CARGA INMEDIATA PRIMERA IMAGEN
     }, 800);
   });
 
@@ -88,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
   next.addEventListener("click", () => mostrarImagen(indice + 1));
   prev.addEventListener("click", () => mostrarImagen(indice - 1));
 
-  // Swipe móvil
+  // Swipe móvil suave
   let startX = 0;
   document.addEventListener("touchstart", e => {
     startX = e.touches[0].clientX;
@@ -102,26 +73,14 @@ document.addEventListener("DOMContentLoaded", function () {
       if (diff > 0) mostrarImagen(indice + 1);
       else mostrarImagen(indice - 1);
     }
-  });
 
-  // DOBLE TAP = encajar / pantalla completa
-  img.addEventListener("touchend", () => {
+    // Doble tap = encajar / fullscreen
     const ahora = new Date().getTime();
-    const diferencia = ahora - ultimoTap;
-
-    if (diferencia < 300 && diferencia > 0) {
-      toggleEncajar();
+    if (ahora - ultimoTap < 300) {
+      modoEncajar = !modoEncajar;
+      img.classList.toggle("encajar", modoEncajar);
     }
     ultimoTap = ahora;
   });
 
-  function toggleEncajar() {
-    modoEncajar = !modoEncajar;
-
-    if (modoEncajar) {
-      img.classList.add("encajar");
-    } else {
-      img.classList.remove("encajar");
-    }
-  }
 });
