@@ -29,7 +29,7 @@ let indice = 0;
 
 // ESPERAR A QUE EL DOM CARGUE (ESTO ARREGLA EL BOTÓN CONTINUAR)
 document.addEventListener("DOMContentLoaded", () => {
-
+document.getElementById("btnContinuar")
   const img = document.getElementById("imagenActual");
   const caption = document.getElementById("caption");
   const btnContinuar = document.getElementById("btnContinuar");
