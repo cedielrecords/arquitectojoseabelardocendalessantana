@@ -73,3 +73,16 @@
 .derecha {
   right: 20px;
 }
+/* MODO NORMAL: pantalla completa cinematográfica */
+#imagenActual {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  transition: all 0.4s ease;
+}
+
+/* MODO ENCAJAR (ver la foto completa) */
+#imagenActual.encajar {
+  object-fit: contain;
+  background: #000;
+}
