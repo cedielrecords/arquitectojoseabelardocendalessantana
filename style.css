@@ -1,7 +1,12 @@
-body {
+* {
     margin: 0;
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    background: #000;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+body {
+    background: #0e0e0e;
     color: white;
 }
 
@@ -12,42 +17,45 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
-    background: black;
+    background: #0b0b0b;
 }
 
 .portada-contenido h1 {
-    font-size: 60px;
+    font-size: 48px;
     letter-spacing: 3px;
-    margin: 0;
 }
 
 .portada-contenido h2 {
-    color: #00cfff;
-    font-size: 28px;
+    font-weight: 300;
     margin-top: 10px;
+    color: #cfcfcf;
 }
 
 .subtitulo {
-    margin-top: 10px;
-    font-size: 18px;
-    opacity: 0.8;
+    margin-top: 20px;
+    font-size: 14px;
+    letter-spacing: 2px;
+    color: #9a9a9a;
 }
 
+/* BOTÓN AZUL PROFESIONAL */
 #btnContinuar {
-    margin-top: 30px;
-    padding: 15px 40px;
-    font-size: 18px;
-    background: #00cfff;
+    margin-top: 40px;
+    padding: 14px 40px;
+    font-size: 16px;
+    letter-spacing: 2px;
     border: none;
-    color: black;
-    font-weight: bold;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #007BFF, #0056d6);
+    color: white;
     cursor: pointer;
-    transition: 0.3s;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0, 123, 255, 0.3);
 }
 
 #btnContinuar:hover {
-    background: #009ec4;
-    transform: scale(1.05);
+    transform: translateY(-2px);
+    box-shadow: 0 15px 40px rgba(0, 123, 255, 0.5);
 }
 
 /* GALERÍA */
@@ -65,11 +73,11 @@ body {
 .visor {
     display: flex;
     align-items: center;
-    width: 90%;
+    gap: 20px;
 }
 
 .imagen-container {
-    width: 100%;
+    max-width: 900px;
     text-align: center;
 }
 
@@ -78,19 +86,28 @@ body {
     max-height: 80vh;
     object-fit: contain;
     border-radius: 10px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
 }
 
 .caption {
-    margin-top: 20px;
-    font-size: 18px;
-    color: #00cfff;
+    margin-top: 15px;
+    font-size: 14px;
+    color: #bdbdbd;
+    letter-spacing: 1px;
 }
 
+/* FLECHAS */
 .flecha {
-    background: #00cfff;
-    border: none;
-    color: black;
     font-size: 30px;
+    background: rgba(255,255,255,0.08);
+    border: none;
+    color: white;
     padding: 20px;
+    border-radius: 50%;
     cursor: pointer;
+    transition: 0.3s;
+}
+
+.flecha:hover {
+    background: rgba(255,255,255,0.2);
 }
