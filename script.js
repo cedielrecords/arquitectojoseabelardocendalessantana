@@ -26,10 +26,19 @@ const imagenes = [
 ];
 
 let indice = 0;
+let modoEncajar = false;
+let ultimoTap = 0;
+
+// PRELOAD para evitar pantalla negra
+const cacheImagenes = [];
+imagenes.forEach(img => {
+  const i = new Image();
+  i.src = img.src;
+  cacheImagenes.push(i);
+});
 
 document.addEventListener("DOMContentLoaded", function () {
 
-  // ELEMENTOS (coherentes con tu HTML corregido)
   const img = document.getElementById("imagenActual");
   const caption = document.getElementById("caption");
   const btnContinuar = document.getElementById("btnContinuar");
@@ -38,46 +47,33 @@ document.addEventListener("DOMContentLoaded", function () {
   const next = document.getElementById("next");
   const prev = document.getElementById("prev");
 
-  // Verificación de seguridad (evita que todo se rompa si algo falta)
-  if (!img || !caption || !btnContinuar || !portada || !galeria) {
-    console.error("Error: elementos del DOM no encontrados.");
-    return;
-  }
-
-  // FUNCIÓN PRINCIPAL (fade suave + carga segura)
   function mostrarImagen(nuevoIndice) {
     indice = nuevoIndice;
 
     if (indice >= imagenes.length) indice = 0;
     if (indice < 0) indice = imagenes.length - 1;
 
-    const nuevaImagen = new Image();
-    nuevaImagen.src = imagenes[indice].src;
+    const nueva = cacheImagenes[indice];
 
-    // Fade out
-    img.style.opacity = "0";
-
-    nuevaImagen.onload = () => {
-      img.src = nuevaImagen.src;
-      caption.textContent = imagenes[indice].caption;
-
-      // Fade in suave (cinematográfico)
-      requestAnimationFrame(() => {
+    // NO ocultamos la imagen hasta que la nueva esté lista (evita negro)
+    if (nueva.complete) {
+      img.style.opacity = "0.4";
+      setTimeout(() => {
+        img.src = nueva.src;
+        caption.textContent = imagenes[indice].caption;
         img.style.opacity = "1";
-      });
-    };
-
-    // Si una imagen falla, no rompe la galería
-    nuevaImagen.onerror = () => {
-      console.warn("No se pudo cargar:", imagenes[indice].src);
-      caption.textContent = "Imagen no disponible.";
-      img.style.opacity = "1";
-    };
+      }, 120);
+    } else {
+      nueva.onload = () => {
+        img.src = nueva.src;
+        caption.textContent = imagenes[indice].caption;
+        img.style.opacity = "1";
+      };
+    }
   }
 
-  // BOTÓN CONTINUAR (NO toca el diseño del intro)
+  // CONTINUAR (sin tocar tu intro visual)
   btnContinuar.addEventListener("click", function () {
-    // Desvanecer portada suavemente
     portada.style.transition = "opacity 0.8s ease";
     portada.style.opacity = "0";
 
@@ -88,49 +84,44 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 800);
   });
 
-  // FLECHA DERECHA
-  if (next) {
-    next.addEventListener("click", function () {
-      mostrarImagen(indice + 1);
-    });
-  }
+  // Flechas
+  next.addEventListener("click", () => mostrarImagen(indice + 1));
+  prev.addEventListener("click", () => mostrarImagen(indice - 1));
 
-  // FLECHA IZQUIERDA
-  if (prev) {
-    prev.addEventListener("click", function () {
-      mostrarImagen(indice - 1);
-    });
-  }
-
-  // SWIPE MÓVIL (iPhone UX real)
+  // Swipe móvil
   let startX = 0;
-
-  document.addEventListener("touchstart", function (e) {
+  document.addEventListener("touchstart", e => {
     startX = e.touches[0].clientX;
   }, { passive: true });
 
-  document.addEventListener("touchend", function (e) {
+  document.addEventListener("touchend", e => {
     const endX = e.changedTouches[0].clientX;
     const diff = startX - endX;
 
     if (Math.abs(diff) > 50) {
-      if (diff > 0) {
-        mostrarImagen(indice + 1); // swipe izquierda
-      } else {
-        mostrarImagen(indice - 1); // swipe derecha
-      }
+      if (diff > 0) mostrarImagen(indice + 1);
+      else mostrarImagen(indice - 1);
     }
   });
 
-  // SCROLL PARA CAMBIAR IMÁGENES (efecto dossier premium)
-  window.addEventListener("wheel", function (e) {
-    if (galeria.classList.contains("oculto")) return;
+  // DOBLE TAP = encajar / pantalla completa
+  img.addEventListener("touchend", () => {
+    const ahora = new Date().getTime();
+    const diferencia = ahora - ultimoTap;
 
-    if (e.deltaY > 0) {
-      mostrarImagen(indice + 1);
+    if (diferencia < 300 && diferencia > 0) {
+      toggleEncajar();
+    }
+    ultimoTap = ahora;
+  });
+
+  function toggleEncajar() {
+    modoEncajar = !modoEncajar;
+
+    if (modoEncajar) {
+      img.classList.add("encajar");
     } else {
-      mostrarImagen(indice - 1);
+      img.classList.remove("encajar");
     }
-  });
-
+  }
 });
