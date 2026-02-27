@@ -1,50 +1,90 @@
+// GALERÍA CON RUTAS REALES (SEGÚN TU CARPETA img)
+
+const imagenes = [
+    { src: "img/1.jpeg", caption: "Obra Arquitectónica 1" },
+    { src: "img/1.jpg", caption: "Obra Arquitectónica 2" },
+    { src: "img/2.png", caption: "Obra Arquitectónica 3" },
+    { src: "img/3.png", caption: "Obra Arquitectónica 4" },
+    { src: "img/4.png", caption: "Obra Arquitectónica 5" },
+    { src: "img/6.png", caption: "Obra Arquitectónica 6" },
+    { src: "img/7.png", caption: "Obra Arquitectónica 7" },
+    { src: "img/8.png", caption: "Obra Arquitectónica 8" },
+    { src: "img/9.png", caption: "Obra Arquitectónica 9" },
+    { src: "img/10.png", caption: "Obra Arquitectónica 10" },
+    { src: "img/11.png", caption: "Obra Arquitectónica 11" },
+    { src: "img/12.png", caption: "Obra Arquitectónica 12" },
+    { src: "img/13.1.png", caption: "Obra Arquitectónica 13" },
+    { src: "img/13.2.png", caption: "Obra Arquitectónica 14" },
+    { src: "img/14.1.png", caption: "Obra Arquitectónica 15" },
+    { src: "img/14.2.png", caption: "Obra Arquitectónica 16" },
+    { src: "img/14.3.png", caption: "Obra Arquitectónica 17" },
+    { src: "img/14.4.png", caption: "Obra Arquitectónica 18" },
+    { src: "img/14.5.png", caption: "Obra Arquitectónica 19" },
+    { src: "img/14.6.png", caption: "Obra Arquitectónica 20" },
+    { src: "img/14.7.png", caption: "Obra Arquitectónica 21" },
+    { src: "img/15.2.png", caption: "Obra Arquitectónica 22" },
+    { src: "img/16.png", caption: "Obra Arquitectónica 23" },
+    { src: "img/16.1.png", caption: "Obra Arquitectónica 24" },
+    { src: "img/16.2.png", caption: "Obra Arquitectónica 25" },
+    { src: "img/16.3.png", caption: "Obra Arquitectónica 26" },
+    { src: "img/17.png", caption: "Obra Arquitectónica 27" },
+    { src: "img/17.1.png", caption: "Obra Arquitectónica 28" },
+    { src: "img/18.png", caption: "Obra Arquitectónica 29" },
+    { src: "img/22.jpeg", caption: "Obra Arquitectónica 30" },
+    { src: "img/23.jpeg", caption: "Obra Arquitectónica 31" },
+    { src: "img/24.png", caption: "Obra Arquitectónica 32" },
+    { src: "img/25.png", caption: "Obra Arquitectónica 33" },
+    { src: "img/26.png", caption: "Obra Arquitectónica 34" },
+    { src: "img/27.png", caption: "Obra Arquitectónica 35" },
+    { src: "img/28.png", caption: "Obra Arquitectónica 36" }
+];
+
+let indice = 0;
+
+// ELEMENTOS DEL DOM
 const btnContinuar = document.getElementById("btnContinuar");
 const portada = document.getElementById("portada");
 const galeria = document.getElementById("galeria");
-const imagen = document.getElementById("imagenActual");
+const imagenActual = document.getElementById("imagenActual");
 const caption = document.getElementById("caption");
-const next = document.getElementById("next");
-const prev = document.getElementById("prev");
+const btnPrev = document.getElementById("prev");
+const btnNext = document.getElementById("next");
 
-/* ORDEN CRONOLÓGICO SEGÚN TUS ARCHIVOS REALES */
-const fotos = [
-    { src: "img/1.jpeg", texto: "Diseño y construcción ampliación planta física, Asociación de Ganaderos de Cucunubá (GANALAC). Área 126 m². Marzo 2022." },
-    { src: "img/2.png", texto: "Construcción cerramiento Colegio Departamental Santa María, Ubaté, Cundinamarca." },
-    { src: "img/3.png", texto: "Reconstrucción Alcaldía Municipio de Susa, Cundinamarca, 1992." },
-    { src: "img/4.png", texto: "Reconstrucción Alcaldía Municipio de Susa, Cundinamarca, 1993." },
-    { src: "img/6.png", texto: "Diseño y construcción casa cural, Municipio de Guachetá, Cundinamarca, 1990." },
-    { src: "img/7.png", texto: "Diseño y construcción ampliación edificio occidental, Colegio Cardenal Sancha, Bogotá, 1997." },
-    { src: "img/8.png", texto: "Dirección de obra Plaza de Mercado del Municipio de Ubaté, Año 2000. Área total 24.000 m²." },
-    { src: "img/13.png", texto: "Reforzamiento estructural Colegio Cardenal Sancha, Bogotá." },
-    { src: "img/16.png", texto: "Reforzamiento estructural Colegio Cardenal Sancha, Bogotá (Proceso constructivo)." },
-    { src: "img/17.png", texto: "Reforzamiento estructural Colegio Cardenal Sancha, Bogotá (Estructura)." },
-    { src: "img/22.jpeg", texto: "Diseño de vivienda, Fusagasugá, propiedad Jhanett Palencia, 2015." },
-    { src: "img/23.jpeg", texto: "Diseño de vivienda, Fusagasugá, propiedad Jhanett Palencia, 2016." },
-    { src: "img/24.png", texto: "Diseño de vivienda, La Vega, Cundinamarca, 2022. Propietaria: Marcela Silva." },
-    { src: "img/27.png", texto: "Pavimentación Vereda Guatancuy, Municipio de Ubaté, 2003." },
-    { src: "img/28.png", texto: "Pavimentación Vereda Guatancuy, Municipio de Ubaté, 2004." }
-];
+// MOSTRAR IMAGEN
+function mostrarImagen() {
+    imagenActual.src = imagenes[indice].src;
+    caption.textContent = imagenes[indice].caption;
+}
 
-let index = 0;
-
-/* BOTÓN CONTINUAR (ARREGLADO) */
+// BOTÓN CONTINUAR (ARREGLA EL BOTÓN MUERTO)
 btnContinuar.addEventListener("click", () => {
     portada.style.display = "none";
     galeria.classList.remove("oculto");
     mostrarImagen();
 });
 
-function mostrarImagen() {
-    imagen.src = fotos[index].src;
-    caption.textContent = fotos[index].texto;
-}
-
-next.addEventListener("click", () => {
-    index = (index + 1) % fotos.length;
+// SIGUIENTE
+btnNext.addEventListener("click", () => {
+    indice++;
+    if (indice >= imagenes.length) {
+        indice = 0;
+    }
     mostrarImagen();
 });
 
-prev.addEventListener("click", () => {
-    index = (index - 1 + fotos.length) % fotos.length;
+// ANTERIOR
+btnPrev.addEventListener("click", () => {
+    indice--;
+    if (indice < 0) {
+        indice = imagenes.length - 1;
+    }
     mostrarImagen();
+});
+
+// PRELOAD (para que carguen rápido y no salgan en blanco)
+window.addEventListener("load", () => {
+    imagenes.forEach(img => {
+        const i = new Image();
+        i.src = img.src;
+    });
 });
