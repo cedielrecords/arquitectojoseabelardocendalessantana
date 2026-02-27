@@ -109,36 +109,25 @@ body {
 
 /* CAPTION GLASS (abajo, elegante) */
 .caption {
-    position: absolute;
-    bottom: 30px;
+    position: fixed;
+    bottom: 25px;
     left: 50%;
     transform: translateX(-50%);
-    max-width: 90%;
-    padding: 12px 20px;
-    font-size: 13px;
-    letter-spacing: 1px;
-    color: #eaeaea;
-    background: rgba(0, 0, 0, 0.35);
+    background: rgba(0,0,0,0.35);
     backdrop-filter: blur(12px);
+    padding: 12px 18px;
     border-radius: 12px;
-    text-align: center;
+    font-size: 13px;
+    color: #eaeaea;
+    z-index: 2;
 }
 
-/* FLECHAS SUAVES (no cajas rígidas) */
 .flecha {
-    position: absolute;
+    position: fixed;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 28px;
-    border: none;
-    color: white;
-    background: rgba(0,0,0,0.25);
-    backdrop-filter: blur(10px);
-    padding: 14px 18px;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: all 0.4s ease;
-    opacity: 0.6;
+    z-index: 3;
+
 }
 
 .flecha:hover {
