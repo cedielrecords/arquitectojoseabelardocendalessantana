@@ -2,35 +2,63 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dossier Fotográfico - Arquitecto José Abelardo Cendales Santana</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Dossier Arquitectónico</title>
+
+<!-- Tipografía elegante -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<!-- PORTADA (NO SE TOCA DISEÑO) -->
-<section id="portada">
-    <div class="portada-contenido">
-        <h1>JOSÉ ABELARDO<br>CENDALES SANTANA</h1>
+<!-- PORTADA PRINCIPAL (LA QUE TE GUSTÓ) -->
+<section class="hero" id="hero">
+    <div class="hero-content">
+        <h1>
+            JOSÉ ABELARDO<br>
+            CENDALES<br>
+            SANTANA
+        </h1>
+
         <h2>ARQUITECTO</h2>
-        <p class="subtitulo">DOSSIER FOTOGRÁFICO DE OBRAS CIVILES Y ARQUITECTÓNICAS</p>
-        <button id="btnContinuar">CONTINUAR</button>
+
+        <p>DOSSIER FOTOGRÁFICO DE OBRAS CIVILES Y ARQUITECTÓNICAS</p>
+
+        <button class="btn" onclick="entrarGaleria()">
+            CONTINUAR
+        </button>
     </div>
 </section>
 
-<!-- GALERÍA -->
-<section id="galeria" class="oculto">
-    <div class="visor">
-        <button class="flecha izquierda" id="prev">←</button>
+<!-- GALERÍA DOSSIER -->
+<section class="gallery" id="gallery">
 
-        <div class="imagen-container">
-            <img id="imagenActual" src="img/1.jpeg" alt="Obra">
-            <div class="caption" id="caption"></div>
-        </div>
-
-        <button class="flecha derecha" id="next">→</button>
+    <!-- TÍTULO SUPERIOR ELEGANTE -->
+    <div class="top-title">
+        Arquitecto José Abelardo Sendales Santana
     </div>
+
+    <!-- SLIDE 1 -->
+    <div class="slide active">
+        <img src="IMG/foto1.jpg" alt="obra 1">
+        <div class="date-left">2004</div>
+        <div class="date-right">Tunja, Colombia</div>
+        <div class="caption">Desarrollo técnico y constructivo</div>
+    </div>
+
+    <!-- SLIDE 2 -->
+    <div class="slide">
+        <img src="IMG/foto2.jpg" alt="obra 2">
+        <div class="date-left">2006</div>
+        <div class="date-right">Colombia</div>
+        <div class="caption">Ejecución arquitectónica</div>
+    </div>
+
+    <!-- BOTONES -->
+    <div class="nav prev" onclick="cambiarSlide(-1)">←</div>
+    <div class="nav next" onclick="cambiarSlide(1)">→</div>
+
 </section>
 
 <script src="script.js"></script>
