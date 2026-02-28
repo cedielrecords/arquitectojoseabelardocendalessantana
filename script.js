@@ -5,6 +5,7 @@ function entrarGaleria() {
 
 let slideIndex = 0;
 const slides = document.querySelectorAll(".slide");
+const gallery = document.getElementById("gallery");
 
 function mostrarSlide(index) {
   slides.forEach(slide => slide.classList.remove("active"));
@@ -22,4 +23,9 @@ function cambiarSlide(direccion) {
   }
 
   mostrarSlide(slideIndex);
+}
+
+/* BOTÓN PARA VER FOTO COMPLETA / ENCAJADA */
+function toggleZoom() {
+  gallery.classList.toggle("fit-mode");
 }
